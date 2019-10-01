@@ -4,3 +4,4 @@ Different ConvNets for images object detection and classification- https://mediu
 YouTube-8M Tensorflow Starter Code - https://github.com/google/youtube-8m
 Vggish- AudioSet- Audio feature extractor - https://github.com/tensorflow/models/tree/master/research/audioset/vggish
 MediaPipe - https://mediapipe.readthedocs.io/en/latest/youtube_8m.html
+Youtube8M dataset details - https://arxiv.org/pdf/1609.08675.pdf
