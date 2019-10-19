@@ -34,15 +34,16 @@ Note:
 When you get the error
 ./bazel-bin/mediapipe/examples/desktop/youtube8m/extract_yt8m_features: error while loading shared libraries: libopencv_core.so.4.1: cannot open shared object file: No such file or director
 
-1.	Find the folder containing the shared library libopencv_core.so.3.2 using the following command line.
+1. Find the folder containing the shared library libopencv_core.so.3.2 using the following command line.
 sudo find / -name "libopencv_core.so.3.2*"
 Then I got the result: /usr/local/lib/libopencv_core.so.3.2.
 2. Create a file called /etc/ld.so.conf.d/opencv.conf and write to it the path to the folder where the binary is stored.For example, I wrote /usr/local/lib/ to my opencv.conf file.
 3. Run the command line as follows.
-sudo ldconfig -v
+    sudo ldconfig -v
 
 
 sudo find / -name "libopencv_core.so.4.1*"
 cd /etc/ld.so.conf.d/
 sudo touch opencv.conf
 sudo vi opencv.conf(in the script add /usr/local/lib/ and save)
+sudo ldconfig -v
