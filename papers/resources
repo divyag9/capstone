@@ -6,3 +6,4 @@ Vggish- AudioSet- Audio feature extractor - https://github.com/tensorflow/models
 MediaPipe - https://mediapipe.readthedocs.io/en/latest/youtube_8m.html
 Youtube8M dataset details - https://arxiv.org/pdf/1609.08675.pdf
 Truly Multi-modal YouTube-8M Video Classification with Video, Audio, and Text - https://arxiv.org/abs/1706.05461
+Deploying web app on AWS - https://medium.com/swlh/deploy-a-machine-learning-model-with-aws-elasticbeanstalk-dfcc47b6043e
