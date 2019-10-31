@@ -14,3 +14,4 @@ machine learning web app - https://towardsdatascience.com/create-a-complete-mach
 Video Review:
 1. Simple Unsupervised Keyphrase Extraction using Sentence Embeddings - https://arxiv.org/pdf/1801.04470.pdf
    code - https://github.com/swisscom/ai-research-keyphrase-extraction
+2. Code for TextRank - https://github.com/summanlp/textrank
