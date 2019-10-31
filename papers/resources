@@ -17,3 +17,5 @@ Video Review:
 2. Code for TextRank - https://github.com/summanlp/textrank
    Can be done using gensim as well
    Another one is pytextrank- https://xang1234.github.io/textrank/
+3. Understanding TextRank - https://www.analyticsvidhya.com/blog/2018/11/introduction-text-summarization-textrank-python/
+                            https://towardsdatascience.com/textrank-for-keyword-extraction-by-python-c0bae21bcec0
