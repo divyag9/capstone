@@ -1,0 +1,112 @@
+<html lang="en">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h3 class="text-muted mt-4">Video review generator</h3>
+        </div>
+
+        <div class="jumbotron mt-4">
+            <h7 class="mt-4">About the product:</h7>
+            <div class="mt-4">
+                As of 2019, online product reviews influence the purchase decisions for 93% of consumers.[1] An astute product or marketing manager would not take this statistic lightly. Further investigation into the reputation for the sources of online reviews and the method by which consumers seek out reviews is also critical. For example, Amazon and Yelp have admitted a problem with fake reviews over the past 7 years leading both companies to alter algorithms and file lawsuits against sellers who post fake reviews.[2] 
+
+                And what about video vs. text product reviews? Video product reviews are gaining traction for several reasons. Some claim that watching a person review a product in a video, see their face, and talk about it is easier to trust than anonymously posted comments. And behavioral changes between generations has influenced which categories of videos are most popular on YouTube. Among Millennials and Gen Z, product reviews and unboxing videos fall in the top three categories of watched content on YouTube.[3] 
+
+                All of the above would (hopefully) lead a product and/or marketing manager to want to understand what people are saying about their product in video reviews.
+
+                But who has time to watch hundreds of videos and keep up-to-date on new postings?
+
+                Introducing [our product name]. An easy way to curate what people are saying about your product. Simply upload a video and let us do the work for you. We can tell you which product features are discussed in the video and assign a sentiment score to each feature. 
+
+                As a use case, [our product name] focuses specifically on [TV’s, electronics, whatever we decide].  We decided on this category because [some statistic here].
+            </div>
+        </div>
+
+        <div class="jumbotron mt-4">
+
+            <h7 class="mt-4">Upload video for review:</h7>
+            <form class="mt-4" method="post">
+                <div class="mt-4 font-weight-bold">Video/Youtube Url: </div><input type="number" name="ordernumber" id="video" class="mt-2 form-control" placeholder="video/youtube url" required autofocus>
+                <input id="createorder" class="btn btn-md btn-primary mt-4" type="submit" value = "Upload">
+
+                <div class="mt-4 font-weight-bold">Review: </div><input type="number" name="ordernumber" id="video" class="mt-2 form-control" placeholder="review" required autofocus>
+            </form>
+        </div>
+
+        </br>
+        </br>
+
+        <div class="header">
+            <h3 class="text-muted mt-4">Team</h3>
+        </div>
+
+        <div class="jumbotron mt-4">
+            <form class="mt-4" method="post">
+                <div class="row">
+                        <div class="col-sm font-weight-bold">Adam Yang </div><div class="col-sm font-weight-bold">Armand Kok </div><div class="col-sm font-weight-bold">Divya Gorantla </div><div class="col-sm font-weight-bold">Krysten Thompson</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm font-weight-bold">..... </div><div class="col-sm font-weight-bold">..... </div><div class="col-sm font-weight-bold">..... </div><div class="col-sm font-weight-bold">..... </div>
+                </div>
+            </form>
+        </div>
+
+
+
+
+        <div class="container table-wrapper-scroll-y">
+            <!-- <table id="myTable" class=" table order-list">
+                <thead>
+                    <tr>
+                        <td>Order Number</td>
+                        <td>Cell Phone Number</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>
+                                <br/>
+                                {{ order[1] }}
+                            </td>
+                            <td>
+                                <br/>
+                                {{ order[2] }}
+                            </td>
+                            <td>
+                                <form action="{{ url_for('send_sms') }}" method="post">
+                                    <input type="hidden" name = "sms_ordernumber" value={{ order[1] }}>
+                                    {% if sendsms_ordernumber == order[1] | string() %}
+                                        <input id="sendsms" class="btn btn-md btn-primary mt-4" type="submit" value = "Send SMS" disabled>
+                                    {% else %}
+                                        <input id="sendsms" class="btn btn-md btn-primary mt-4" type="submit" value = "Send SMS">
+                                    {% endif %}
+                                </form>
+                            </td>
+                            <td>
+                                <form action="{{ url_for('confirm_pickup') }}" method="post">
+                                    <input type="hidden" name = "pickup_ordernumber" value={{ order[1] }}>
+                                    {% if sendsms_ordernumber == order[1] | string() %}
+                                        <input id="confirmpickup" class="btn btn-md btn-primary mt-4" type="submit" value = "Confirm pickup">
+                                    {% else %}
+                                        <input id="confirmpickup" class="btn btn-md btn-primary mt-4" type="submit" value = "Confirm pickup" disabled>
+                                    {% endif %}
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table> -->
+        </div>
+
+        <footer class="footer">
+            <p>&copy; VideoReview 2019</p>
+        </footer>
+    </div>
+</body>
+</html>
