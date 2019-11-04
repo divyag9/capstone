@@ -1,16 +1,182 @@
+
+<!DOCTYPE html>
 <html lang="en">
+
+<style> /* set the CSS */
+
+@import url(https://fonts.googleapis.com/css?family=Expletus+Sans:600);
+/*==========SCALE-IN==========*/
+@-webkit-keyframes scale-in {
+     0%   {transform: scale(10, 10); opacity: 0;}
+    100% {transform: scale(1, 1); opacity: 1;}
+}
+
+@keyframes scale-in {
+    0%   {transform: scale(10, 10); opacity: 0;}
+    100% {transform: scale(1, 1);  opacity: 1;}
+}
+/*==========ROLL-OUT==========*/
+@-webkit-keyframes roll-out {
+    0%   {width: 0;}
+    100% {width: 100%; }
+}
+@keyframes roll-out {
+    0%   {width: 0;}
+    100% {width: 100%; }
+}
+body{
+   background: #392f28;
+}
+main{
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Expletus Sans', cursive;
+}
+.hero{
+  width: 100%;
+  max-width: 1200px;
+  height: 500px;
+  text-align: center;
+  margin: 0 auto;
+  background: #392f28;
+  position: relative; 
+  color: #392f28;
+}
+
+.hero h1{
+  font-size: 4.1em;
+  margin: auto;
+  position: absolute; 
+  top: 120px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+.hero p{
+  font-size: 1.5em;
+  margin: auto;
+  position: absolute; 
+  top: 220px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+   z-index: 1;
+}
+.hero img{
+  width: 100%;
+}
+.bar{
+  width: 100%;
+  height: 200px;
+  background: -moz-linear-gradient(289deg, #c60a09 0%, #f23332 36%, #c60a09 100%);
+  background: -webkit-linear-gradient(289deg, #c60a09 0%, #f23332 36%, #c60a09 100%);
+  background: -ms-linear-gradient(289deg, #c60a09 0%, #f23332 36%, #c60a09 100%);
+  background: linear-gradient(161deg, #c60a09 0%, #f23332 36%, #c60a09 100%);
+  opacity: 0.3;
+  position: absolute; 
+  z-index: 0;
+  left: 0;
+  top: 90px;
+  -ms-transform-origin: 100% 0%;
+  -webkit-transform-origin: 100% 0%;
+  transform-origin: 100% 0%;
+   -webkit-animation: roll-out 1.2s ease-out ;
+  -moz-animation: roll-out 1.2s ease-out ;
+    animation: roll-out 1.2s ease-out ; 
+}
+.hero h1, .hero p{
+  -webkit-animation: scale-in 1.3s ease-out;
+  -moz-animation: scale-in 1.3s  ease-out;
+    animation: scale-in 1.3s ease-out; 
+}
+
+
+@media all and (max-width: 768px) {
+  .hero{
+    height: 50vw;
+  }
+  .bar{
+    height: 26vw;
+    top: 10vw;
+  }
+  .hero h1{
+    font-size: 8vw;
+    top: 13vw;
+  }
+  .hero p{
+    font-size: 3vw;
+    top: 27vw;
+  }
+ 
+}
+
+</style>
+
 <head>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- Link Bootstrap JS and JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
+
+        <!-- play in between here -->
+
+<main>
+  <div class="hero">
+    <h1>2 Many 2 Watch</h1>
+    <p>(working name)</p>
+    <img src="https://40.media.tumblr.com/f2916759544c106d91c28a9e0fd2cb94/tumblr_n7qhrzxUiv1sfie3io1_1280.jpg" />
+     <div class="bar"></div>
+  </div>
+ 
+</main
+
+
+        <!-- play in between here -->
+
 <body>
+    <br>
     <div class="container">
-        <div class="header">
-            <h3 class="text-muted mt-4">Video review generator</h3>
+        <div class="header" class="text-primary">
+
+        <h2>
+            <small class="text-muted"></small>
+        </h2>
+
         </div>
 
+        <!-- <div class="jumbotron mt-4"> -->
+<div>
+    <p class="lead">
+                We know watching product review videos can be extremely time-consuming. That's why we created "2 Many 2 Watch", an app that let's you upload a video and see a list of product features along with a sentiment score. The sentiment score provides a gauge on how positive or negative the comments were in the video about that particular feature.
+
+                Give it a try! Simply paste in the url to a product review video below and click Upload.
+    </p>
+</div>
+
         <div class="jumbotron mt-4">
-            <h7 class="mt-4">About the product:</h7>
-            <div class="mt-4">
+
+            <h4 class="mt-4">Upload video for review:</h4>
+            <form class="mt-4" method="post">
+                <div class="mt-4 font-weight-bold">Video/Youtube Url: </div><input type="number" name="ordernumber" id="video" class="mt-2 form-control" placeholder="video/youtube url" required autofocus>
+                <input id="createorder" class="btn btn-md btn-primary mt-4" type="submit" value = "Upload">
+
+                <div class="mt-4 font-weight-bold">Review: </div><input type="number" name="ordernumber" id="video" class="mt-2 form-control" placeholder="review" required autofocus>
+            </form>
+        </div>
+
+
+        <div class="jumbotron mt-4">
+            <h3 class="mt-4">About the product:</h3>
+            <div class="lead">
                 As of 2019, online product reviews influence the purchase decisions for 93% of consumers.[1] An astute product or marketing manager would not take this statistic lightly. Further investigation into the reputation for the sources of online reviews and the method by which consumers seek out reviews is also critical. For example, Amazon and Yelp have admitted a problem with fake reviews over the past 7 years leading both companies to alter algorithms and file lawsuits against sellers who post fake reviews.[2] 
 
                 And what about video vs. text product reviews? Video product reviews are gaining traction for several reasons. Some claim that watching a person review a product in a video, see their face, and talk about it is easier to trust than anonymously posted comments. And behavioral changes between generations has influenced which categories of videos are most popular on YouTube. Among Millennials and Gen Z, product reviews and unboxing videos fall in the top three categories of watched content on YouTube.[3] 
@@ -25,19 +191,7 @@
             </div>
         </div>
 
-        <div class="jumbotron mt-4">
 
-            <h7 class="mt-4">Upload video for review:</h7>
-            <form class="mt-4" method="post">
-                <div class="mt-4 font-weight-bold">Video/Youtube Url: </div><input type="number" name="ordernumber" id="video" class="mt-2 form-control" placeholder="video/youtube url" required autofocus>
-                <input id="createorder" class="btn btn-md btn-primary mt-4" type="submit" value = "Upload">
-
-                <div class="mt-4 font-weight-bold">Review: </div><input type="number" name="ordernumber" id="video" class="mt-2 form-control" placeholder="review" required autofocus>
-            </form>
-        </div>
-
-        </br>
-        </br>
 
         <div class="header">
             <h3 class="text-muted mt-4">Team</h3>
@@ -49,7 +203,10 @@
                         <div class="col-sm font-weight-bold">Adam Yang </div><div class="col-sm font-weight-bold">Armand Kok </div><div class="col-sm font-weight-bold">Divya Gorantla </div><div class="col-sm font-weight-bold">Krysten Thompson</div>
                 </div>
                 <div class="row">
-                    <div class="col-sm font-weight-bold">..... </div><div class="col-sm font-weight-bold">..... </div><div class="col-sm font-weight-bold">..... </div><div class="col-sm font-weight-bold">..... </div>
+                    <div class="col-sm">More about Adam</div>
+                    <div class="col-sm">More about Armand</div>
+                    <div class="col-sm">More about Divya</div>
+                    <div class="col-sm">More about Krysten</div>
                 </div>
             </form>
         </div>
