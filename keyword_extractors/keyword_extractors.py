@@ -98,11 +98,33 @@ class KeyWordExtractor(object):
         self.positionRank(n=n)
         self.multiPartiteRank(n=n)
         
-    def getAllKeyWords(self):
-        all_keywords = {'tfidf_keywords': self.kw_tfidf, 'kpminer_keywords': self.kw_kpminer, 
-                        'yake_keywords': self.kw_yake, 'textrank_keywords': self.kw_textrank,
-                        'singlerank_keywords':self.kw_singlerank, 'topicrank_keywords': self.kw_topicrank, 
-                        'topicalpagerank_keywords': self.kw_tprank, 'position_keywords': self.kw_positionrank,
-                        'multipartiterank_keywords': self.kw_mprank}
-        
+    def getAllKeyWords(self, include_score=False, sort=False):
+        if include_score == True:
+            all_keywords = {'tfidf_keywords': self.kw_tfidf, 'kpminer_keywords': self.kw_kpminer, 
+                            'yake_keywords': self.kw_yake, 'textrank_keywords': self.kw_textrank,
+                            'singlerank_keywords':self.kw_singlerank, 'topicrank_keywords': self.kw_topicrank, 
+                            'topicalpagerank_keywords': self.kw_tprank, 'position_keywords': self.kw_positionrank,
+                            'multipartiterank_keywords': self.kw_mprank}
+        else:
+            if sort == False:
+                all_keywords = {'tfidf_keywords': [i[0] for i in self.kw_tfidf],
+                                'kpminer_keywords': [i[0] for i in self.kw_kpminer], 
+                                'yake_keywords': [i[0] for i in self.kw_yake],
+                                'textrank_keywords': [i[0] for i in self.kw_textrank],
+                                'singlerank_keywords': [i[0] for i in self.kw_singlerank],
+                                'topicrank_keywords': [i[0] for i in self.kw_topicrank], 
+                                'topicalpagerank_keywords': [i[0] for i in self.kw_tprank],
+                                'position_keywords': [i[0] for i in self.kw_positionrank],
+                                'multipartiterank_keywords': [i[0] for i in self.kw_mprank]}
+            else:
+                all_keywords = {'tfidf_keywords': sorted([i[0] for i in self.kw_tfidf]),
+                                'kpminer_keywords': sorted([i[0] for i in self.kw_kpminer]), 
+                                'yake_keywords': sorted([i[0] for i in self.kw_yake]),
+                                'textrank_keywords': sorted([i[0] for i in self.kw_textrank]),
+                                'singlerank_keywords': sorted([i[0] for i in self.kw_singlerank]),
+                                'topicrank_keywords': sorted([i[0] for i in self.kw_topicrank]), 
+                                'topicalpagerank_keywords': sorted([i[0] for i in self.kw_tprank]),
+                                'position_keywords': sorted([i[0] for i in self.kw_positionrank]),
+                                'multipartiterank_keywords': sorted([i[0] for i in self.kw_mprank])}
+
         return all_keywords
