@@ -1,269 +1,185 @@
-
 <!DOCTYPE html>
-<html lang="en">
-
-<style> /* set the CSS */
-
-@import url(https://fonts.googleapis.com/css?family=Expletus+Sans:600);
-/*==========SCALE-IN==========*/
-@-webkit-keyframes scale-in {
-     0%   {transform: scale(10, 10); opacity: 0;}
-    100% {transform: scale(1, 1); opacity: 1;}
-}
-
-@keyframes scale-in {
-    0%   {transform: scale(10, 10); opacity: 0;}
-    100% {transform: scale(1, 1);  opacity: 1;}
-}
-/*==========ROLL-OUT==========*/
-@-webkit-keyframes roll-out {
-    0%   {width: 0;}
-    100% {width: 100%; }
-}
-@keyframes roll-out {
-    0%   {width: 0;}
-    100% {width: 100%; }
-}
-body{
-   background: #392f28;
-}
-main{
-  width: 100%;
-  overflow: hidden;
-  font-family: 'Expletus Sans', cursive;
-}
-.hero{
-  width: 100%;
-  max-width: 1200px;
-  height: 500px;
-  text-align: center;
-  margin: 0 auto;
-  background: #392f28;
-  position: relative; 
-  color: #392f28;
-}
-
-.hero h1{
-  font-size: 4.1em;
-  margin: auto;
-  position: absolute; 
-  top: 120px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-}
-.hero p{
-  font-size: 1.5em;
-  margin: auto;
-  position: absolute; 
-  top: 220px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-   z-index: 1;
-}
-.hero img{
-  width: 100%;
-}
-.bar{
-  width: 100%;
-  height: 200px;
-  background: -moz-linear-gradient(289deg, #c60a09 0%, #f23332 36%, #c60a09 100%);
-  background: -webkit-linear-gradient(289deg, #c60a09 0%, #f23332 36%, #c60a09 100%);
-  background: -ms-linear-gradient(289deg, #c60a09 0%, #f23332 36%, #c60a09 100%);
-  background: linear-gradient(161deg, #c60a09 0%, #f23332 36%, #c60a09 100%);
-  opacity: 0.3;
-  position: absolute; 
-  z-index: 0;
-  left: 0;
-  top: 90px;
-  -ms-transform-origin: 100% 0%;
-  -webkit-transform-origin: 100% 0%;
-  transform-origin: 100% 0%;
-   -webkit-animation: roll-out 1.2s ease-out ;
-  -moz-animation: roll-out 1.2s ease-out ;
-    animation: roll-out 1.2s ease-out ; 
-}
-.hero h1, .hero p{
-  -webkit-animation: scale-in 1.3s ease-out;
-  -moz-animation: scale-in 1.3s  ease-out;
-    animation: scale-in 1.3s ease-out; 
-}
-
-
-@media all and (max-width: 768px) {
-  .hero{
-    height: 50vw;
-  }
-  .bar{
-    height: 26vw;
-    top: 10vw;
-  }
-  .hero h1{
-    font-size: 8vw;
-    top: 13vw;
-  }
-  .hero p{
-    font-size: 3vw;
-    top: 27vw;
-  }
- 
-}
-
-</style>
-
+<html >
 <head>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content="Codeply" />
+  <title>Codeply snippet gjksMEosw5</title>
+  <base target="_self"> 
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <!-- Link Bootstrap JS and JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
+<body >
+      <!--
+NAVIGATION SECTION
 
-        <!-- play in between here -->
-
-<main>
-  <div class="hero">
-    <h1>2 Many 2 Watch</h1>
-    <p>(working name)</p>
-    <img src="https://40.media.tumblr.com/f2916759544c106d91c28a9e0fd2cb94/tumblr_n7qhrzxUiv1sfie3io1_1280.jpg" />
-     <div class="bar"></div>
-  </div>
- 
-</main
-
-
-        <!-- play in between here -->
-
-<body>
-    <br>
+-->
+    <div class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-md bg-purple navbar-dark">
+                <a class="navbar-brand align-self-start" href="#">2 Many 2 Watch</a>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link js-scroll-trigger" href="#tryit">Try It</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#model">Models/Architecture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#data">Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#team">The Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
     <div class="container">
-        <div class="header" class="text-primary">
+        <!--
 
-        <h2>
-            <small class="text-muted"></small>
-        </h2>
+AREA UNDER NAV BAR
 
-        </div>
-
-        <!-- <div class="jumbotron mt-4"> -->
-<div>
-    <p class="lead">
-                We know watching product review videos can be extremely time-consuming. That's why we created "2 Many 2 Watch", an app that let's you upload a video and see a list of product features along with a sentiment score. The sentiment score provides a gauge on how positive or negative the comments were in the video about that particular feature.
-
-                Give it a try! Simply paste in the url to a product review video below and click Upload.
-    </p>
-</div>
-
-        <div class="jumbotron mt-4">
-
-            <h4 class="mt-4">Upload video for review:</h4>
-            <form class="mt-4" method="post">
-                <div class="mt-4 font-weight-bold">Video/Youtube Url: </div><input type="number" name="ordernumber" id="video" class="mt-2 form-control" placeholder="video/youtube url" required autofocus>
-                <input id="createorder" class="btn btn-md btn-primary mt-4" type="submit" value = "Upload">
-
-                <div class="mt-4 font-weight-bold">Review: </div><input type="number" name="ordernumber" id="video" class="mt-2 form-control" placeholder="review" required autofocus>
-            </form>
-        </div>
-
-
-        <div class="jumbotron mt-4">
-            <h3 class="mt-4">About the product:</h3>
-            <div class="lead">
-                As of 2019, online product reviews influence the purchase decisions for 93% of consumers.[1] An astute product or marketing manager would not take this statistic lightly. Further investigation into the reputation for the sources of online reviews and the method by which consumers seek out reviews is also critical. For example, Amazon and Yelp have admitted a problem with fake reviews over the past 7 years leading both companies to alter algorithms and file lawsuits against sellers who post fake reviews.[2] 
-
-                And what about video vs. text product reviews? Video product reviews are gaining traction for several reasons. Some claim that watching a person review a product in a video, see their face, and talk about it is easier to trust than anonymously posted comments. And behavioral changes between generations has influenced which categories of videos are most popular on YouTube. Among Millennials and Gen Z, product reviews and unboxing videos fall in the top three categories of watched content on YouTube.[3] 
-
-                All of the above would (hopefully) lead a product and/or marketing manager to want to understand what people are saying about their product in video reviews.
-
-                But who has time to watch hundreds of videos and keep up-to-date on new postings?
-
-                Introducing [our product name]. An easy way to curate what people are saying about your product. Simply upload a video and let us do the work for you. We can tell you which product features are discussed in the video and assign a sentiment score to each feature. 
-
-                As a use case, [our product name] focuses specifically on [TV’s, electronics, whatever we decide].  We decided on this category because [some statistic here].
+-->
+        <div class="col-lg-14 mx-auto">
+            <div class="card card-image">
+                <div class="overlay"></div>
+                <div class="overlay-text text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div class="mx-auto">
+                        <h6 class="purple-text"><i class="fas fa-plane"></i><strong></strong></h6>
+                        <h3 class="card-title py-3 font-weight-bold"><strong>2 Many 2 Watch</strong></h3>
+                        <p class="lead">Summarizing product review videos in minutes!</p>
+                        <!--      <a class="btn btn-secondary btn-rounded"><i class="far fa-clone left"></i> View project</a> -->
+                    </div>
+                </div>
             </div>
         </div>
+        <!--
 
+SECTION id = #tryit
 
-
-        <div class="header">
-            <h3 class="text-muted mt-4">Team</h3>
-        </div>
-
-        <div class="jumbotron mt-4">
-            <form class="mt-4" method="post">
+-->
+        <section id="tryit">
+            <div class="container">
                 <div class="row">
-                        <div class="col-sm font-weight-bold">Adam Yang </div><div class="col-sm font-weight-bold">Armand Kok </div><div class="col-sm font-weight-bold">Divya Gorantla </div><div class="col-sm font-weight-bold">Krysten Thompson</div>
+                    <div class="col-lg-12 mx-auto">
+                        <h2></h2>
+                        <p class="lead">We know watching product review videos can be extremely time-consuming. That's why we created "2 Many 2 Watch", an app that let's you upload a video and see a list of product features along with a sentiment score. The sentiment score provides a gauge on how positive or negative the comments were in the video about that particular feature. Give it a try! Simply paste in the url to a product review video below and click Upload.</p>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm">More about Adam</div>
-                    <div class="col-sm">More about Armand</div>
-                    <div class="col-sm">More about Divya</div>
-                    <div class="col-sm">More about Krysten</div>
-                </div>
-            </form>
-        </div>
-
-
-
-
-        <div class="container table-wrapper-scroll-y">
-            <!-- <table id="myTable" class=" table order-list">
-                <thead>
-                    <tr>
-                        <td>Order Number</td>
-                        <td>Cell Phone Number</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for order in orders %}
-                        <tr>
-                            <td>
-                                <br/>
-                                {{ order[1] }}
-                            </td>
-                            <td>
-                                <br/>
-                                {{ order[2] }}
-                            </td>
-                            <td>
-                                <form action="{{ url_for('send_sms') }}" method="post">
-                                    <input type="hidden" name = "sms_ordernumber" value={{ order[1] }}>
-                                    {% if sendsms_ordernumber == order[1] | string() %}
-                                        <input id="sendsms" class="btn btn-md btn-primary mt-4" type="submit" value = "Send SMS" disabled>
-                                    {% else %}
-                                        <input id="sendsms" class="btn btn-md btn-primary mt-4" type="submit" value = "Send SMS">
-                                    {% endif %}
-                                </form>
-                            </td>
-                            <td>
-                                <form action="{{ url_for('confirm_pickup') }}" method="post">
-                                    <input type="hidden" name = "pickup_ordernumber" value={{ order[1] }}>
-                                    {% if sendsms_ordernumber == order[1] | string() %}
-                                        <input id="confirmpickup" class="btn btn-md btn-primary mt-4" type="submit" value = "Confirm pickup">
-                                    {% else %}
-                                        <input id="confirmpickup" class="btn btn-md btn-primary mt-4" type="submit" value = "Confirm pickup" disabled>
-                                    {% endif %}
-                                </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table> -->
-        </div>
-
-        <footer class="footer">
-            <p>&copy; VideoReview 2019</p>
-        </footer>
+            </div>
+        </section>
     </div>
+    <!--
+
+APPLICATION
+
+-->
+    <section id="tool">
+        <div class="container">
+            <div class="col-lg-12 mx-auto">
+                <h2>Upload a Video</h2>
+                <form class="mt-4" method="post">
+                    <div class="mt-4 font-weight-bold">Video/Youtube Url: </div><input type="number" name="ordernumber" id="video" class="mt-2 form-control" placeholder="video/youtube url" required="" autofocus="">
+                    <input id="createorder" class="btn btn-md btn-primary mt-4" type="submit" value="Upload">
+                    <div class="mt-4 font-weight-bold">Review: </div><input type="number" name="ordernumber" id="video" class="mt-2 form-control" placeholder="review" required="" autofocus="">
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!--
+
+SECTION id = #model
+
+-->
+    <section id="model">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mx-auto">
+                    <div class="jumbotron d-flex flex-column justify-content-center">
+                        <h2>Models/Architecture</h2>
+                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--
+
+SECTION id = #data
+
+-->
+    <section id="data">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mx-auto">
+                    <div class="jumbotron d-flex flex-column justify-content-center">
+                        <h2>Data</h2>
+                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--
+
+SECTION id = #about
+
+-->
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mx-auto">
+                    <div class="jumbotron d-flex flex-column justify-content-center">
+                        <h2>About the product:</h2>
+                        <p class="lead">As of 2019, online product reviews influence the purchase decisions for 93% of consumers.[1] An astute product or marketing manager would not take this statistic lightly. Further investigation into the reputation for the sources of online reviews and the method by which consumers seek out reviews is also critical. For example, Amazon and Yelp have admitted a problem with fake reviews over the past 7 years leading both companies to alter algorithms and file lawsuits against sellers who post fake reviews.[2] And what about video vs. text product reviews? Video product reviews are gaining traction for several reasons. Some claim that watching a person review a product in a video, see their face, and talk about it is easier to trust than anonymously posted comments. And behavioral changes between generations has influenced which categories of videos are most popular on YouTube. Among Millennials and Gen Z, product reviews and unboxing videos fall in the top three categories of watched content on YouTube.[3] All of the above would (hopefully) lead a product and/or marketing manager to want to understand what people are saying about their product in video reviews. But who has time to watch hundreds of videos and keep up-to-date on new postings? Introducing [our product name]. An easy way to curate what people are saying about your product. Simply upload a video and let us do the work for you. We can tell you which product features are discussed in the video and assign a sentiment score to each feature. As a use case, [our product name] focuses specifically on [TV’s, electronics, whatever we decide]. We decided on this category because [some statistic here].</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--
+
+SECTION id = #team
+
+-->
+    <section id="team">
+        <div class="container">
+            <div class="jumbotron mt-4">
+                <form class="mt-4" method="post">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="font-weight-bold">Adam Yang </span>
+                            <div>More about Adam</div>
+                        </div>
+                        <div class="col-md-3"> 
+                            <span class="font-weight-bold">Armand Kok </span> <div>More about Armand</div>
+                        </div>
+                        <div class="col-md-3"> 
+                            <span class="font-weight-bold">Divya Gorantla </span> <div>More about Divya</div>
+                        </div>
+                        <div class="col-md-3"> 
+                            <span class="font-weight-bold">Krysten Thompson </span> <div>More about Krysten</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer class="footer px-5">
+        <p>© VideoReview 2019</p>
+    </footer>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/scripts.js"></script>
 </body>
 </html>

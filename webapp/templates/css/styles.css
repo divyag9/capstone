@@ -1,0 +1,35 @@
+body {
+    padding-top: 56px;
+}
+
+.card-image {
+    background-image: url(https://ucarecdn.com/2eae08f9-87d8-4da1-bd54-2707f3734fbd/);
+    background-position: center center;
+}
+
+.bg-purple {
+    background-color: #4d20a0;
+}
+
+section {
+    /* min-height: 90vh; */
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.overlay {
+    position: absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.overlay-text {
+    z-index: 1;
+    position: relative;
+}
+
+
+
