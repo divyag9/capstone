@@ -10,6 +10,15 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
   <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script type=text/javascript>
+    $(document).ready(function() {
+      $("#review_button").click(function() {
+        $("#text_input").text("{{video_text | safe}}");
+      });
+    });
+  </script>
 </head>
 <body >
       <!--
@@ -84,12 +93,43 @@ APPLICATION
         <div class="container">
             <div class="col-lg-12 mx-auto">
                 <h2>Upload a Video</h2>
-                <form class="mt-4" method="post">
-                    <div class="mt-4 font-weight-bold">Video/Youtube Url: </div><input type="number" name="ordernumber" id="video" class="mt-2 form-control" placeholder="video/youtube url" required="" autofocus="">
-                    <input id="createorder" class="btn btn-md btn-primary mt-4" type="submit" value="Upload">
-                    <div class="mt-4 font-weight-bold">Review: </div><input type="number" name="ordernumber" id="video" class="mt-2 form-control" placeholder="review" required="" autofocus="">
+                <form action="/getkeywords_youtube" method="post">
+                    <div class="mt-4 font-weight-bold">Youtube Url: </div><input name="url" id="url" class="mt-2 form-control" placeholder="youtube url" autofocus>
+                    <input id="youtube" class="btn btn-md btn-primary mt-4" type="submit" value = "Upload">
                 </form>
-            </div>
+
+                <br>
+                <div class="mt-4 font-weight-bold">Or</div>
+                <br>
+
+                <form action="/getkeywords_mp4" method="post" enctype="multipart/form-data">
+                    <label class="mt-4 font-weight-bold" for="user_file">Upload video for review:</label>
+                    <br>
+                    <input class="btn btn-md btn-primary mt-4" type="file" name="user_file">
+                    <button class="btn btn-md btn-primary mt-4" type="submit">Upload</button>
+                </form>
+
+                <div>
+                    {% if video_available %}
+                      <video controls width="500" style="center">
+                        <source src="airpods.mp4" type="video/mp4" autoplay>
+                        Sorry, your browser doesn't support embedded videos.
+                      </video>
+                      <!-- <iframe width="420" height="315" src="{{url}}">
+                      </iframe> -->
+                    {% endif %}
+                    </div>
+                    <div class="mt-4 font-weight-bold">Keywords: </div>
+                    <div>
+                        {% for keyword in keywords %}
+                        <div class="btn btn-sm btn-success mt-4">{{keyword}}</div>
+                        {% endfor %}
+                    </div>
+                    <br></br>
+                    <input type="button" class="btn btn-md btn-primary mt-4" id="review_button" name="answer" value="See full review" />
+                    <br></br>
+                    <p id="text_input"></p>
+                </div>
         </div>
     </section>
 
