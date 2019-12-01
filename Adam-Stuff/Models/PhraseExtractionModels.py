@@ -246,11 +246,16 @@ class StatementExtracter(object):
                 neutral.append(text)
             elif sentiment == "MIXED":
                 mixed.append(text)
-            
+                
+        total_count = len(positive)+len(negative)+len(neutral)+len(mixed)
+        pcnt_pos = int(100*len(positive)/total_count)
+        pcnt_neg = int(100*len(negative)/total_count)
+        pcnt_neu = int(100*len(neutral)/total_count)
+        pct_mixed = int(100*len(mixed)/total_count)
         # Return a dict in the format of {pos:[list of positive phrases sorted by score], etc.}
-        output = {"pos":[positive[j][0] for j in np.argsort([i[1] for i in positive])[::-1]],
-                  "neg":[negative[j][0] for j in np.argsort([i[1] for i in negative])[::-1]],
-                  "neu":[neutral[j][0] for j in np.argsort([i[1] for i in neutral])[::-1]],
-                  "mixed":[mixed[j][0] for j in np.argsort([i[1] for i in mixed])[::-1]]
+        output = {"positive":[[positive[j][0] for j in np.argsort([i[1] for i in positive])[::-1]],pcnt_pos],
+                  "negative":[negative[j][0] for j in np.argsort([i[1] for i in negative])[::-1],pcnt_neg],
+                  "neutral":[neutral[j][0] for j in np.argsort([i[1] for i in neutral])[::-1],pcnt_neu],
+                  "mixed":[mixed[j][0] for j in np.argsort([i[1] for i in mixed])[::-1],pcnt_mixed]
                  }
         return output
