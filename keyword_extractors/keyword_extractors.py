@@ -487,10 +487,10 @@ def outputKeywords(text):
 
     # Filter out duplicated keywords and keywords that appear in multiple sentences
     dupe_filter = keywordFilter(list(model_keywords_df['keyword']), sentiment_df)
-    dupe_filter.sentenceCountFilter()
+    dupe_filter.sentenceCountFilter(n=2)
     dupe_filter.duplicateFilter()
 
-    output = dupe_filter.getKeywordDataFrame()[['keyword', 'sentiment']]
+    output = dupe_filter.getKeywordDataFrame()[['keyword', 'sentiment', 'sentence']]
     output = list(output.itertuples(index=False, name=None))
 
     return output
