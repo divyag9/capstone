@@ -253,9 +253,9 @@ class StatementExtracter(object):
         pcnt_neu = int(100*len(neutral)/total_count)
         pct_mixed = int(100*len(mixed)/total_count)
         # Return a dict in the format of {pos:[list of positive phrases sorted by score], etc.}
-        output = {"positive":[[positive[j][0] for j in np.argsort([i[1] for i in positive])[::-1]],pcnt_pos],
-                  "negative":[negative[j][0] for j in np.argsort([i[1] for i in negative])[::-1],pcnt_neg],
-                  "neutral":[neutral[j][0] for j in np.argsort([i[1] for i in neutral])[::-1],pcnt_neu],
-                  "mixed":[mixed[j][0] for j in np.argsort([i[1] for i in mixed])[::-1],pcnt_mixed]
+        output = {"positive":[[positive[j][0] for j in np.argsort([i[1] for i in positive])][::-1],pcnt_pos],
+                  "negative":[[negative[j][0] for j in np.argsort([i[1] for i in negative])][::-1],pcnt_neg],
+                  "neutral":[[neutral[j][0] for j in np.argsort([i[1] for i in neutral])][::-1],pcnt_neu],
+                  "mixed":[[mixed[j][0] for j in np.argsort([i[1] for i in mixed])][::-1],pcnt_mixed]
                  }
         return output
