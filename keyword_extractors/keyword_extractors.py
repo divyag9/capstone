@@ -475,8 +475,9 @@ def outputKeywords(text):
     # Filter out neutral sentences and sentences that are only slightly positive/negative
     filtered_text = SentimentFilter(text)
     filtered_text.getSentiment()
-    filtered_text.filterPositives(0.75)
-    filtered_text.filterNegatives(0.75)
+    sent_list = filtered_text.sent_df['sentence'].to_list()
+    filtered_text.filterPositives(0.70)
+    filtered_text.filterNegatives(0.70)
     filtered_text.filterNeutrals()
     sentiment_df = filtered_text.getDataFrame()
 
@@ -493,4 +494,4 @@ def outputKeywords(text):
     output = dupe_filter.getKeywordDataFrame()[['keyword', 'sentiment', 'sentence']]
     output = list(output.itertuples(index=False, name=None))
 
-    return output
+    return [output, sent_list]
