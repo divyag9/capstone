@@ -1,8 +1,12 @@
 body {
-    padding-top: 70px;
+    padding-top: 10px;
 }
 
+.remove_padding{
+    padding-bottom: 0px!important;
+    padding-top:0px!important;
 
+}
 .navbar {
     padding-top: 10px;
     padding-bottom: 15px;
@@ -19,9 +23,20 @@ body {
 }
 
 .bg-purple {
-    background-color: #4d20a0;
+    background-color: #a68fcf;
 }
 
+.bg-green {
+    background-color: #a5d9a9;
+}
+
+.bg-blue {
+    background-color: #6776e3;
+}
+
+.bg-ltblue {
+    background-color: #a8c9ef;
+}
 
 .section {
     /* min-height: 90vh; */
