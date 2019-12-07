@@ -3,13 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="generator" content="Codeply" />
-  <!--- <title>Codeply snippet gjksMEosw5</title> --->
   <base target="_self"> 
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
+
   <link rel="stylesheet" href="css/styles.css" />
+
+
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" /> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body >
 
@@ -17,43 +20,58 @@
 NAVIGATION SECTION
 
 -->
-     <div class="fixed-top">
-        <div class="container">
-            <nav class="navbar navbar-expand-md bg-purple navbar-dark">
-                <a class="navbar-brand align-self-start" href="index.html">TLDW; Too Long Don't Watch</a>
+     <div class="">
+        <div class="container remove_padding">
+            <nav class="navbar navbar-fixed-top navbar-expand-md bg-purple navbar-dark">
+              <a class="navbar-brand align-self-start" href="#">TLDW; Too Long Didn't Watch</a>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Try It</a>
+                        <a class="nav-link js-scroll-trigger" href="#tryit">Try It</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Models/Architecture</a>
+                        <a class="nav-link js-scroll-trigger" href="#model">Models/Architecture</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Data</a>
+                        <a class="nav-link js-scroll-trigger" href="#data">Data</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">About</a>
+                        <a class="nav-link js-scroll-trigger" href="#team">The Team</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">The Team</a>
+                        <a class="nav-link js-scroll-trigger" href="#about">About</a>
                     </li>
                 </ul>
             </nav>
-        </div>
+        </div>    
     </div>
 
 <!-- CONTENT SECTION -->
     <br>
-   <div class="container bg-white text-center text-black">
+   <div class="container text-center text-black bg-green">
                  <!--  <div class="container" style="background: purple;">. -->
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <h2>Data</h2>
                     <hr>
-                    <p class="lead text-left">Much of the data we used for model building and testing came from product review videos on YouTube.</p>
-                    <p class="lead text-left">We did leverage some publicly available Amazon review data......</p>
-                    <p class="lead text-left">The data is provided by Julian McAuley from the University of California, San Diego. His site can be found here. http://jmcauley.ucsd.edu/data/amazon/</p>
-                    <p class="lead text-left">We specifically used data from the 2018 page and limited the review dates to 2015 - 2018. Cameras, electronics, and phone data were used. We first identified the product ID's within a category for a given product category, e.g. phones, then filtered the reviews according to the product ID. In the case of phones, for example, there were thousands of product IDs which yielded a training dataset of over 300K+ data points.</p>
+                    <p class="lead text-left">We used two forms of data to build our models: text extracted from YouTube product review videos, and Amazon Reviews data. And for both, the focus was on products we believed would have a substantial amount of video product reviews. This included TV's, cell phones, and laptops. Products that are higher-ticket items which probably result in a person doing some homework prior to making a purchase.</p>
+                    <br>
+                    <h4 class = "text-center">Text from Product Review Videos</h4>
+                    <p class="lead text-left">For keyword and sentence extraction, we used text extracted from actual product review videos. By manually scrutinizing the text output of actual produt review videos, we were better able to understand what our models needed to do. Six videos were used, 3 punctuated and 3 unpunctuated, for supervised learning.</p>
+                      <br>
+                    <h4 class = "text-center">Amazon Reviews Data</h4> 
+
+                    <p class="lead text-left">We did leverage some publicly available Amazon review data. Requested citations are noted below.</p>
+                    <p class="lead text-left">The written Amazon reviews were used as training data when creating the summarization model. Exploratory data analysis was conducted on 60GB+ of data. We ended up with a training dataset of approximately 500K data points. The data included: number of stars, review title, review text, and Verified/Not Verified.</p>
+                    <p class="lead text-left">Additional data cleaning included removing reviews where:</p>
+                  <div class="col-lg-10 mx-auto text-left">
+                    <li>Summary field included the word 'star', or had only 1-2 words</li>
+                    <li>Review text was less than four words</li>
+                    <li>Review text was an actual HTML tag</li>
+                  </div>
+                  <br>
+                  <br>
+                    <p class="lead text-left">The data is provided by Julian McAuley from the University of California, San Diego. His site can be found here: <b> http://jmcauley.ucsd.edu/data/amazon/</b></p>
+                    <p class="lead text-left">We specifically used data from the 2018 page and limited the review dates to 2015 - 2018. Cameras, electronics, and phone data were used.</p>
                     <br>
                 </div>
             </div>

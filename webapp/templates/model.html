@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="generator" content="Codeply" />
-  <!--- <title>Codeply snippet gjksMEosw5</title> --->
   <base target="_self"> 
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
   <link rel="stylesheet" href="css/styles.css" />
+
+  <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" /> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body >
 
@@ -17,33 +18,32 @@
 NAV SECTION
 -->    
 
-  <div class="container">
-        <nav class="navbar navbar-fixed-top navbar-expand-md bg-purple navbar-dark">
-            <div class="container">
-                    <a class="navbar-brand align-self-start" href="index.html">TLDW; Too Long Don't Watch</a>
-                    <ul class="navbar-nav ml-auto"> 
+    <div class="">
+        <div class="container remove_padding">
+            <nav class="navbar navbar-fixed-top navbar-expand-md bg-purple navbar-dark">
+              <a class="navbar-brand align-self-start" href="#">TLDW; Too Long Didn't Watch</a>
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Try It</a>
+                        <a class="nav-link js-scroll-trigger" href="#tryit">Try It</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Models/Architecture</a>
+                        <a class="nav-link js-scroll-trigger" href="#model">Models/Architecture</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Data</a>
+                        <a class="nav-link js-scroll-trigger" href="#data">Data</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">About</a>
+                        <a class="nav-link js-scroll-trigger" href="#team">The Team</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">The Team</a>
+                        <a class="nav-link js-scroll-trigger" href="#about">About</a>
                     </li>
-                    </ul>
+                </ul>
+            </nav>
+        </div>    
+    </div>
 
-            </div>    
-        </nav>
-  </div>  
 
-    <br>
 <!-- CONTENT SECTION -->
 
     <div class="container bg-white text-center text-black">
@@ -52,13 +52,30 @@ NAV SECTION
                 <div class="col-lg-10 mx-auto">
                     <h2>Models & Architecture</h2>
                     <hr>
-                    <p class="lead text-left">There were many steps and models explored in the creation of Too Long Don't Watch, along with interesting challenges. As a team, we expected product review videos to be more concise, organized, and relatively easy to "process" through machine learning algorithms. Two areas that required significant attention were the lack of punctuation when converting the audio to text, and the conversational nature of the text, with significant filler words, "um's", and jumping back/forth when talking about product features.</p>
+                    <p class="lead text-left">There were many steps and models explored in the creation of Too Long Didn't Watch, along with interesting challenges. As a team, we generally expected product review videos to be organized and relatively easy to "process" through NLP libraries. However, two areas  required significant attention.</p>
+                    <p class="lead text-left">First, many videos are "auto-captioned" which means YouTube automatically adds captions but no punctuation. Video posters can add their own captions and include punctuation, but captioning a 20-min video can be tedious. The lack of punctuation provided a challenge when trying to identify sentences and associated product features with descriptors. Second, many product review videos are conversational in nature, complete with filler words (um's/uh's/you know/like) and frequent jumping back and forth between topics and product features.</p>
                     <p class="lead text-left">During the early stages of our project, one of the first tasks that needed to be explored was how to extract the audio from a review video and convert it to text.</p>
-                    <p class="lead text-left">Several methods were built including a function that extracted the audio track and then converted the audio track to text, as well as a video caption extractor. The video caption extractor required only one step (vs 5 when first extracting the audio track), so we opted to use the caption extractor. In addition, if a video poster had customized their captions, punctuation was usually included in the output. This proved useful for keyword extraction (discussed later).</p>
-                    <p class="lead text-left">YouTube auto-captions most videos. And YouTube posters can customize their video captions if desired. This includes adding punctuation. We found that roughly xx% of videos included captions with punctuation. This observation is strictly based on videos we explored for training and testing purposes. For videos whose captions did not include punctuation, we created a algorithm to do it.</p>
-                    <p class="lead text-left">Once we identified our method for extracting the voice-over in the video, we needed to figure out a way to extract keywords. In this case, keywords are defined as product features with an associated decriptor. We built several models as noted below.</p>
+                    <p class="lead text-left">Several methods were built including a function that extracted the audio track and then converted the audio track to text. YouTube also provides a library to extract captions from videos. This video caption extractor required only one step (vs 5 when first extracting the audio track), so we opted to use YouTube's caption extractor.</p>
+                    <p class="lead text-left">After identifying the method to extract the video voice-over into text, we needed to figure out a way to extract keywords and sentences.</p>
                 </div>
             </div>
+        </div>
+
+
+        <div class="container text-center">
+              <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <h3>Keyword Extractor</h3>
+                    </div>
+              </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <p class="lead text-left">We defined keywords as product features with associated decriptors and experimented with many models.</p> 
+                </div>
+            </div>    
         </div>
 
 
@@ -66,18 +83,8 @@ NAV SECTION
           <div class="row">
                 <div class="col-lg-12 mx-auto">
 
-                <img src="images/KW_Extractor_Models.png"> 
-                <hr>
-                </div>
-          </div>
-    </div>
-  
-    <div class="container text-center">
-          <div class="row">
-                <div class="col-lg-12 mx-auto">
-                <h4>Keyword Extractor: Example Output</h4>
-                <img src="images/KW_output.png"> 
-
+                  <img class="img-responsive" src="{{ url_for('static', filename='images/KW_Extractor_Models.png') }}"> 
+                  <hr>
                 </div>
           </div>
     </div>
@@ -87,8 +94,26 @@ NAV SECTION
                  <!--  <div class="container" style="background: purple;">. -->
             <div class="row">
                 <div class="col-lg-10 mx-auto">
-                    <p class="lead text-left">The above example output is from a GoPro review. The output reflects the top ten keywords for each model. We noticed that the majority of keywords are usually in sentences that have a very positive sentiment or very negative sentiment. Rarely do we find keywords in sentences that have a neutral sentiment, or just a slightly positive/negative sentiment. So we implemented a sentiment filter to aid in filtering keywords. The sentiment filter would filter out the less useful sentences prior to keyword extraction.</p>
-                    <p class="lead text-left">To score our models' performance, we developed our own formula. To come up with our own formula, we read through reviews to manually determine appropriate keywords. Our score calculation:</p>
+                    <p class="lead text-left"><p class="lead text-left">An example of keyword output for each model is shown below. We noticed that the majority of keywords are usually in sentences that have a very positive sentiment or very negative sentiment. Rarely do we find keywords in sentences that have a neutral sentiment, or just a slightly positive/negative sentiment. So we implemented a sentiment filter to aid in identifying keywords. The sentiment filter "removes" the less useful sentences prior to keyword extraction.</p>
+                </div>
+            </div>    
+        </div>
+
+      <div class="container text-center">
+          <div class="row">
+                <div class="col-lg-12 mx-auto">
+                  <h5>Keyword Extractor: Example Output</h5>
+                  <img class="img-responsive" src="{{ url_for('static', filename='images/KW_output.png') }}"> 
+
+                </div>
+          </div>
+      </div>
+
+      <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <p class="lead text-left">To quantitatively score our models' performance, we developed our own formula. This required us to manually read video text output and highlight relevant keywords (because we did not have training data). The process helped us visually identify what should be included in the output. During the manual review process we also noticed that keywords tend to be in sentences that have fairly strong negative or positive sentiment. Hence our application of a sentiment filter.</p> 
+                    <p class="lead text-left">Rationale for the formula below is our desire for balance between the number of keywords that are correct and the number of keywords actually generated. The likelihood of getting more correct keywords is partially a function of simply generating more keywords overall. But this results in also getting more incorrect keywords which defeats the purpose of the model. Our end goal is to deliver as many correct keywords with the least amount of overall keywords generated. Our score calculation:</p>
                 </div>
             </div>    
         </div>
@@ -96,7 +121,7 @@ NAV SECTION
     <div class="container text-center bg-primary">
           <div class="row">
               <div class="col-lg-8 mx-auto">
-                <img src="images/score.png"> 
+                <img class="img-responsive" src="{{ url_for('static', filename='images/score.png') }}"> 
 
               </div>
           </div>
@@ -105,38 +130,53 @@ NAV SECTION
         <div class="container text-center"
             <div class="row">
                 <div class="col-lg-10 mx-auto">
-                    <p class="lead text-left">Through extensive trial and error, we included the number of predicted keywords in the denominator to help limit the number of keywords being extracted.</p>
-                    <p class="lead text-left">Because the sentiment filter removes neutral sentences, as well as slightly positive/negatie sentences, we tested scores with and without the sentiment filter. As seen in the table below, the models performed better with sentiment filter being applied.</p>
+                
+                    <p class="lead text-left">Because the sentiment filter removes neutral sentences, as well as slightly positive/negatie sentences, we tested scores with and without the sentiment filter. As seen in the table below, the models performed better when the sentiment filter was applied.</p>
                     <br>
-
-                    <img src="images/sentiment_score.png">
-                    <hr>
+                    <img class="img-responsive" src="{{ url_for('static', filename='images/sentiment_score.png') }}">
                 </div>
             </div>
         </div>
 
+      <div class="container text-center"
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                
+                    <p class="lead text-left">Below is a snapshot of each model's performance when applying our custom scoring formula. Our end solution uses Singlerank (which is the green line).</p>
+                    <br>
+                    <h5>Keyword Extractor: Model Performance</h5>
+                    <img class="img-responsive" src="{{ url_for('static', filename='images/kw_extract_performance.png') }}">
+                    <hr>
+                </div>
+            </div>
+      </div>
+
+
         <div class="container text-center">
               <div class="row">
                     <div class="col-lg-10 mx-auto">
-                        <h2>Statement Extractor</h2>
+                        <h3>Statement/Phrase Extractor</h3>
                     </div>
               </div>
         </div>            
 
-        <div class="container text-center">
+ <!--       <div class="container text-center">
               <div class="row">
                     <div class="col-lg-12 mx-auto">
-                        <img src="images/statement_extractor.png"> 
+                        <img class="img-responsive" src="{{ url_for('static', filename='images/statement_extractor.png') }}"> 
                         <br>
                     </div>
               </div>
-        </div>
-        <br>
+        </div>. -->
       <div class="container text-center">
           <div class="row">
                 <div class="col-lg-10 mx-auto">
-                  <p class="lead text-left">In addition to providing color-coded keywords as output, we also thought it would be useful to show the user the entire narrative from the video. In order to do this, we needed to create a statement extractor. This is because many videos do not come with customized captions that include punctuation.</p>
-                  <p class="lead text-left">To begin, we manually review the text output and identify is/are statements that are useful for our user. Our code will then implement the following:</p>
+                  <p class="lead text-left">In addition to providing sentiment-colored keywords as output for our user (green for positive, red for negative), we also thought it would be useful to show the entire narrative from the video. In order to do this, we needed to create a statement extractor. Again, this is because many videos do not come with customized captions that include punctuation.</p>
+                  <br>
+                  <img class="img-responsive" src="{{ url_for('static', filename='images/statement_extractor.png') }}"> 
+                  <br>
+                  <br>
+                  <p class="lead text-left">To begin, we manually review the text output and identify is/are statements that are useful for the user. Our code will then implement the following:</p>
                   <div class="col-lg-10 mx-auto text-left">
                     <li>Preprocess text to convert “it’s” to “it is”, and “they’re” to “they are”</li>
                     <li>Find “is” or “are” tokens and use Spacy to extract the subtree associated with that token</li>
@@ -144,10 +184,10 @@ NAV SECTION
                     <li>Look words in the subtree to the right of the token and identify the most relevant description using the same method but a different set of rules</li>
                   </div>
                   <br>
-                  <p class="lead text-left">The above methods work with text that does not contain punctuation as well, but the rules must be stricter to extract coherent statements. The stricter rules also result in fewer sentences being extracted.</p>
-                  <p class="lead text-left">We also created a score formula for sentence extraction. When text output does not include punctuation and stricter rules are required, there are more "missed guesses" which brings down the score. Text output with punctuation performs well.</p>
-                  <p class="lead text-left">One interesting note tying back to our initial observations regarding "conversational talk", filler words, and dis-organized flow...if a product review video has a lot of useless is/are statements, our sentence scores may be negatively impacted because of the numerous "useless" sentence guesses in the output.</p>
-                  <p class="lead text-left">We also created a formula to score sentence output (below) and calculated the score across several product reviews. It is important to note whether punctuation is included in the output automatically or not as videos including punctuation in the captions were much more easy to identify (as noted above).</p>
+                  <p class="lead text-left">The above methods work with text that does not contain punctuation, but the rules must be stricter to extract coherent statements. The stricter rules also result in fewer sentences being extracted.</p>
+                  <p class="lead text-left">We also created a formula to score sentence extraction. Text output with punctuation performs well. But if text output does not include punctuation, stricter rules are required because there are more "missed guesses" which lowers the score. </p>
+                  <p class="lead text-left">One interesting note tying back to our initial observations regarding "conversational talk", filler words, and unorganized flow: if a product review video has a lot of useless is/are statements, our sentence scores may be negatively impacted because of the numerous "useless" sentence guesses in the output.</p>
+                  <p class="lead text-left">In the table below, it's important to note whether punctuation is included in the output automatically or not as videos including punctuation in the captions were much more easy to identify.</p>
                 </div>
           </div>    
     </div>
@@ -155,7 +195,7 @@ NAV SECTION
       <div class="container text-center">
               <div class="row">
                     <div class="col-lg-12 mx-auto">
-                        <img src="images/statement_formula.png"> 
+                        <img class="img-responsive" src="{{ url_for('static', filename='images/statement_formula.png') }}"> 
                         <br>
                     </div>
               </div>
@@ -166,12 +206,31 @@ NAV SECTION
           <div class="container"
             <div class="row">
                 <div class="col-lg-10 mx-auto">
-                    <p class="lead text-left">Per the above table, the scores for accuracy of sentence extraction *when captions include punctuation* is significantly better than when the video captions do not contain punctutation. The number of Missed Guesses ranged between X%-X% for sentences with punctutation versus X%-X% for sentences without punctuation.</p>
-                    <p class="lead text-left">more to come</p>
+                    <p class="lead text-left">Per the above table, the scores for accuracy of sentence extraction <b>when captions include punctuation</b> is significantly better than when the video captions do not contain punctutation. The number of Missed Guesses ranged between <b>3%-6% for sentences with punctutation</b> versus <b>24%-39% for sentences without punctuation.</b></p>
                     <hr>
                 </div>
             </div>
         </div>
+
+
+        <div class="container text-center">
+              <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <h3>Summarizer</h3>
+                    </div>
+              </div>
+        </div>     
+
+
+        <div class="container"
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <p class="lead text-left">blah blah</p>
+                </div>
+            </div>
+        </div>
+
+
 
 <!-- Footnotes  -->
 

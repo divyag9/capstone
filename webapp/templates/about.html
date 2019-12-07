@@ -3,59 +3,64 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="generator" content="Codeply" />
-  <!--- <title>Codeply snippet gjksMEosw5</title> --->
   <base target="_self"> 
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
+
   <link rel="stylesheet" href="css/styles.css" />
+
+
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" /> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
+
+<body >
 
 <!--
 NAVIGATION SECTION
 
 -->
-
-<body >
-
-    <div class="fixed-top">
-        <div class="container">
-            <nav class="navbar navbar-expand-md bg-purple navbar-dark">
-                <a class="navbar-brand align-self-start" href="index.html">TLDW; Too Long Don't Watch</a>
+     <div class="">
+        <div class="container remove_padding">
+            <nav class="navbar navbar-fixed-top navbar-expand-md bg-purple navbar-dark">
+              <a class="navbar-brand align-self-start" href="#">TLDW; Too Long Didn't Watch</a>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Try It</a>
+                        <a class="nav-link js-scroll-trigger" href="#tryit">Try It</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Models/Architecture</a>
+                        <a class="nav-link js-scroll-trigger" href="#model">Models/Architecture</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Data</a>
+                        <a class="nav-link js-scroll-trigger" href="#data">Data</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">About</a>
+                        <a class="nav-link js-scroll-trigger" href="#team">The Team</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">The Team</a>
+                        <a class="nav-link js-scroll-trigger" href="#about">About</a>
                     </li>
                 </ul>
             </nav>
-        </div>
+        </div>    
     </div>
     <br>
 
 <!-- CONTENT SECTION -->
 
-      <div class="container bg-warning text-center text-black style="margin-top:30px">
+    <div class="container text-center text-black bg-ltblue">
+                 <!--  <div class="container" style="background: purple;">. -->
             <div class="row">
                 <div class="col-lg-10 mx-auto">
-                    <h2>Why Create TLDW; Too Long Don't Watch?</h2>
+                    <h2>Why Create TLDW; Too Long Didn't Watch?</h2>
                     <br>
-                    <p class="lead text-left">As a relatively tech-savvy team, we've all found ourselves watching video product reviews prior to making a purchase. Whether interested in a specific person's thoughts, or wanting to hear the pros and cons from multiple sources, we've all spent countless hours watching review videos.</p>
-                    <p class="lead text-left">So wouldn't it be great if there were a way to get the highlights from a product review video without having to watch it?</p>
-                    <p class="lead text-left">We wondered if others would appreciate a tool like this and found quite a few interesting statistics. In the end, we believe Too Long Don't Watch is ideal for people who watch product review videos prior to making purchases, as well as product and marketing managers who want to see what the influencers are saying about their products but don't have time to watch (and log) tens, if not hundreds, of videos.</p>
-                    <p class="lead text-left">Here are some interesting statistics on product review products:</p>
+                    <p class="lead text-left">As product review videos grow in popularity, one potential drawback is the time commitment. Wouldn't it be great if there were a way to get the highlights from a product review video without having to watch it? That's how Too Long Didn't Watch came to be.</p>
+
+                    <p class="lead text-left">When considering the audience for a solution like Too Long Didn't Watch, we felt two distinct groups would benefit. The first is consumers. Several key statistics below are indicative of trends around product review videos.</p>
+                    <p class="lead text-left">The second group are product and marketing managers. Our long-term goal is to allow business people to upload multiple videos at a time and provide highlights as seen in the demo but aggregated. Businesses can find out what influencers are saying about their product. And an aggregated view could provide the equivalent of focus group feedback. As part of our long-term strategy, we would like to conduct our own research with product and marketing managers to better understand what output would be most useful.</p>
+              
+                    <p class="lead text-left">Take a look at some interesting statistics on product review videos:</p>
                     <br>
 
                 </div>
@@ -67,7 +72,7 @@ NAVIGATION SECTION
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
-                <img src="images/about1.jpg">             
+                <img class="img-responsive" src="{{ url_for('static', filename='images/about1.png') }}">             
                 <hr class="d-sm-none">
             </div>
             <div class="col-sm-4">
@@ -91,7 +96,7 @@ NAVIGATION SECTION
     <div class="container bg-info text-center">
           <div class="row">
               <div class="col-lg-11 mx-auto">
-                <img src="images/amazonYelp.png"> 
+                <img class="img-responsive" src="{{ url_for('static', filename='images/amazonYelp.png') }}"> 
 
               </div>
           </div>
@@ -100,17 +105,15 @@ NAVIGATION SECTION
     <br>
     <br>
 
-    <div class="container bg-success">
+    <div class="container bg-green">
         <div class="row">
             <div class="col-sm-6">
-                <h3>Some claim that watching a person review a product in a video, see their face, and talk about it is easier to trust than anonymously posted comments.</h3>
-                <br>
-                <h3>And behavioral changes between generations has influenced which categories of videos are most popular on YouTube. Among Millennials and Gen Z, product reviews and unboxing videos fall in the top three categories of watched content on 
+                <h3>Behavioral changes between generations has influenced which categories of videos are most popular on YouTube. Among Millennials and Gen Z, product reviews and unboxing videos fall in the top three categories of watched content on 
                 YouTube.[3]</h3>
             </div>
 
             <div class="col-sm-6">
-                <img src="images/genZ.png">
+                <img class="img-responsive" src="{{ url_for('static', filename='images/genZ.png') }}">
 
             </div>
         </div>
