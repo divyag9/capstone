@@ -22,8 +22,25 @@ body {
     background-position: center center;
 }
 
+.bg-ltgray {
+    background-color: #F5F5F5;
+}
+
 .bg-purple {
     background-color: #a68fcf;
+}
+
+.bg-red {
+    background-color: #df2020;
+}
+
+
+.bg-brightred {
+    background-color: #ff0000;
+}
+
+.bg-orange {
+    background-color: #ff9a00;
 }
 
 .bg-green {
@@ -55,11 +72,11 @@ body {
 }
 
 .negative {
-    color: red;
+    color: #df2020;
 }
 
 .mixed {
-    color: yellow;
+    color: #ff9a00;
 }
 
 .neutral {
