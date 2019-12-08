@@ -7,9 +7,7 @@
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
-  <link rel="stylesheet" href="css/styles.css" />
-
-  <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" /> -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" /> 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body >
@@ -21,7 +19,7 @@ NAV SECTION
     <div class="">
         <div class="container remove_padding">
             <nav class="navbar navbar-fixed-top navbar-expand-md bg-purple navbar-dark">
-              <a class="navbar-brand align-self-start" href="#">TLDW; Too Long Didn't Watch</a>
+              <a class="navbar-brand align-self-start" href="index.html">TLDW; Too Long Didn't Watch</a>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
                         <a class="nav-link js-scroll-trigger" href="#tryit">Try It</a>
@@ -118,7 +116,7 @@ NAV SECTION
             </div>    
         </div>
 
-    <div class="container text-center bg-primary">
+    <div class="container text-center bg-info">
           <div class="row">
               <div class="col-lg-8 mx-auto">
                 <img class="img-responsive" src="{{ url_for('static', filename='images/score.png') }}"> 
@@ -145,7 +143,9 @@ NAV SECTION
                     <p class="lead text-left">Below is a snapshot of each model's performance when applying our custom scoring formula. Our end solution uses Singlerank (which is the green line).</p>
                     <br>
                     <h5>Keyword Extractor: Model Performance</h5>
-                    <img class="img-responsive" src="{{ url_for('static', filename='images/kw_extract_performance.png') }}">
+                    <div class="col-lg-8 mx-auto">
+                      <img class="img-responsive" src="{{ url_for('static', filename='images/kw_extract_performance.png') }}">
+                    </div>  
                     <hr>
                 </div>
             </div>
@@ -160,14 +160,7 @@ NAV SECTION
               </div>
         </div>            
 
- <!--       <div class="container text-center">
-              <div class="row">
-                    <div class="col-lg-12 mx-auto">
-                        <img class="img-responsive" src="{{ url_for('static', filename='images/statement_extractor.png') }}"> 
-                        <br>
-                    </div>
-              </div>
-        </div>. -->
+
       <div class="container text-center">
           <div class="row">
                 <div class="col-lg-10 mx-auto">
@@ -200,8 +193,6 @@ NAV SECTION
                     </div>
               </div>
         </div>
-        <br>
-
 
           <div class="container"
             <div class="row">
@@ -225,14 +216,40 @@ NAV SECTION
         <div class="container"
             <div class="row">
                 <div class="col-lg-10 mx-auto">
-                    <p class="lead text-left">blah blah</p>
+                    <p class="lead text-left">In order to create the Summarizer element in the output, the Amazon Reviews data was used. (For detailed information on the data, please reference the "Data" page on this site.)</p>
+                    <p class="lead text-left">Before beginning supervised learning, the data was further cleaned. Reviews with the following were removed:</p>
+                    <div class="col-lg-10 mx-auto text-left">
+                      <li>"Summary" field of the review (filled in by reviewer) included the word 'star' or only had two words</li>
+                      <li>Body of the review contained three or fewer words</li>
+                      <li>Body of review was an HTML tag</li>
+                    </div>
+                    <p class="lead text-left">Next, the data was used to train an Encoder-Decoder (Seq2Seq) model with attention. Four variations of the model were run to determine the ideal configuration.</p>
+                    <div class="col-lg-10 mx-auto text-left">
+                      <li>1. Encoder: single LSTM</li>
+                      <li>   Decoder: single LSTM</li>
+                      <li>2. Encoder: 3-layer LSTM</li>
+                      <li>   Decoder: single LSTM</li>
+                      <li>3. Encoder: single bi-LSTM</li>
+                      <li>   Decoder: single LSTM</li>
+                      <li>4. Encoder: 3-layer bi-directional LSTM's</li>
+                      <li>   Decoder: single LSTM</li>
+                    </div> 
+                    <br>
+                    <p class="lead text-left">We applied the Rouge score to identify the best variation. (Rouge is commonly used to evaluate NLP summarization. Rouge metrics compare an machine learning generated summary output to a human-produced piece of text. In this case the human-produced text is the Amazon Reviews data.)</p> 
+                    <p class="lead text-left">Because of the poor quality of the "Summary" field in the Amazon Review data, the Encoder-Decoder models didn't perform as well as expected. For the existing tool, we opted to use the 3-layer BiLSTM. But further improvements are necessary.</p> 
+                  </div>
                 </div>
             </div>
         </div>
 
-
-
-<!-- Footnotes  -->
+        <div class="container text-center">
+              <div class="row">
+                    <div class="col-lg-12 mx-auto">
+                        <img class="img-responsive" src="{{ url_for('static', filename='images/LSTM.png') }}"> 
+                        <br>
+                    </div>
+              </div>
+        </div>
 
 
 <<!-- FOOTER -->
