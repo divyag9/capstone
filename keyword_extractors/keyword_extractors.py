@@ -483,8 +483,11 @@ def outputKeywords(text):
 
     # Extract keywords
     model_keywords = KeyWordExtractor(filtered_text.getFilteredText())
-    model_keywords.singleRank(n=20)
-    model_keywords_df = pd.DataFrame(model_keywords.kw_singlerank,columns=['keyword', 'score'])
+    model_keywords.allExtractors()
+    if model_keywords.kw_singlerank == []:
+        model_keywords_df = pd.DataFrame(model_keywords.kw_rake, columns=['keyword', 'score'])
+    else:
+        model_keywords_df = pd.DataFrame(model_keywords.kw_singlerank,columns=['keyword', 'score'])
 
     # Filter out duplicated keywords and keywords that appear in multiple sentences
     dupe_filter = keywordFilter(list(model_keywords_df['keyword']), sentiment_df)
