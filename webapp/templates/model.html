@@ -19,22 +19,22 @@ NAV SECTION
     <div class="">
         <div class="container remove_padding">
             <nav class="navbar navbar-fixed-top navbar-expand-md bg-purple navbar-dark">
-              <a class="navbar-brand align-self-start" href="index.html">TLDW; Too Long Didn't Watch</a>
+              <a class="navbar-brand align-self-start" href="/">TLDW; Too Long Didn't Watch</a>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link js-scroll-trigger" href="#tryit">Try It</a>
+                        <a class="nav-link js-scroll-trigger" href="/">Try It</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#model">Models/Architecture</a>
+                        <a class="nav-link js-scroll-trigger" href="/model">Models/Architecture</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#data">Data</a>
+                        <a class="nav-link js-scroll-trigger" href="/data">Data</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#team">The Team</a>
+                        <a class="nav-link js-scroll-trigger" href="/">The Team</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                        <a class="nav-link js-scroll-trigger" href="/about">About</a>
                     </li>
                 </ul>
             </nav>
@@ -91,26 +91,22 @@ NAV SECTION
 
     <div class="container text-center">
           <div class="row">
-                <div class="col-lg-10 mx-auto">
-                  <ul>
-                  <li><b>Statitical Models:</b></li>
-                    <ul>
-                    <li>TF-IDF</li>
-                    <li>KP-Miner</li>
-                    <li>YAKE</li>
-                    <li>Custom RAKE</li>
-                    </ul> 
-                  <li><b>Graph-based Models:</b></li>
-                    <ul>
-                    <li>TextRank</li>
-                    <li>SingleRank</li>
-                    <li>TopicRank</li>
-                    <li>TopicalPageRank</li>
-                    <li>PositionRank</li>
-                    <li>MultipartiteRank</li>
-                    </ul> 
-                  </ul>
-                  <hr>
+                <div class="col-lg-8 mx-auto text-left">
+                      <p class="lead text-left"><b>Statitical Models:</b></p>
+                      <p class="lead text-left">TF-IDF</p>
+                      <p class="lead text-left">KP-Miner</p>
+                      <p class="lead text-left">YAKE</p>
+                      <p class="lead text-left">Custom RAKE</p>
+                      <br>
+                      <br> 
+                      <p class="lead text-left"><b>Graph-based Models:</b></p>
+                      <p class="lead text-left">TextRank</p>
+                      <p class="lead text-left">SingleRank</p>
+                      <p class="lead text-left">TopicRank</p>
+                      <p class="lead text-left">TopicalPageRank</p>
+                      <p class="lead text-left">PositionRank</p>
+                      <p class="lead text-left">MultipartiteRank</p>
+                      <hr>
                 </div>
           </div>
     </div>
@@ -236,16 +232,17 @@ NAV SECTION
                     <p class="lead text-left">In order to create the Summarizer element in the output, the Amazon Reviews data was used. (For detailed information on the data, please reference the "Data" page on this site.)</p>
                     <p class="lead text-left">Before beginning supervised learning, the data was further cleaned. Reviews with the following were removed:</p>
                     <div class="col-lg-10 mx-auto text-left">
-                      <li>"Summary" field of the review (filled in by reviewer) included the word 'star' or only had two words. We did this because many summaries had values such as 'one star' or 'five star' which did not provide a good enough summary for training the model.</li>
-                      <li>Body of the review contained three or fewer words</li>
-                      <li>Body of review was an HTML tag</li>
+                      <li class="lead text-left">"Summary" field of the review (filled in by reviewer) included the word 'star' or only had two words. We did this because many summaries had values such as 'one star' or 'five star' which did not provide a good enough summary for training the model.</li>
+                      <li class="lead text-left">Body of the review contained three or fewer words</li>
+                      <li class="lead text-left">Body of review was an HTML tag</li>
                     </div>
+                    <br>
                     <p class="lead text-left">Next, the data was used to train an Encoder-Decoder (Seq2Seq) model with attention. While the Decoder remained a single-layer LSTM, four variations of the Encoder were run to determine the ideal configuration.</p>
-                    <div class="col-lg-10 mx-auto text-center">
-                      <p>1. Encoder: single-layer LSTM</p>
-                      <p>2. Encoder: 3-layer LSTM</p>
-                      <p>3. Encoder: single bi-LSTM</p>
-                      <p>4. Encoder: 3-layer bi-directional LSTM</p>
+                    <div class="col-lg-10 mx-auto text-left">
+                      <p class="lead text-left">1. Encoder: single-layer LSTM</p>
+                      <p class="lead text-left">2. Encoder: 3-layer LSTM</p>
+                      <p class="lead text-left">3. Encoder: single bi-LSTM</p>
+                      <p class="lead text-left">4. Encoder: 3-layer bi-directional LSTM</p>
                     </div> 
                     <br>
                     <p class="lead text-left">We applied the Rouge score to identify the best variation. (Rouge is commonly used to evaluate NLP summarization. Rouge metrics compare an machine learning generated summary output to a human-produced piece of text. In this case the human-produced text is the Amazon Reviews data.)</p> 
@@ -253,14 +250,46 @@ NAV SECTION
                     <p class="lead text-left">Data in the 'Summary' field is not what we would consider gold standard which is why we implemented a custom Rouge score. Our customization gave the model an advantage if the generated summary matches words in the review <b>as well as</b> words in the original summary.</p>
                     <p class="lead text-left">Following is how we created the custom rouge score:</p>
                     <br>
-                    <p class="lead text-center"><b>Recall</b> = # overlapping words between original and generated summary / # words in the original summary</p>
-                    <p class="lead text-center"><b>Custom Precision</b> = (# overlapping words between original and generated summary / # words in the generated summary) + (# overlapping words between review and generated summary / # words in the generated summary)</p>
-                    <p class="lead text-center"><b>Custom F1</b> = 2 * (CustomPrecision * Recall / CustomPrecision + Recall)</p>
-                    <br>
+                </div>
+        </div>
+
+        <div class="container text-center">
+              <div class="row">
+                    <div class="col-lg-12 mx-auto">
+                        <img class="img-responsive" src="{{ url_for('static', filename='images/rouge_recall.png') }}"> 
+                        <br>
+                    </div>
+              </div>
+        </div>
+
+        <div class="container text-center">
+              <div class="row">
+                    <div class="col-lg-12 mx-auto">
+                        <img class="img-responsive" src="{{ url_for('static', filename='images/rouge_precision.png') }}"> 
+                        <br>
+                    </div>
+              </div>
+        </div>
+
+        <div class="container text-center">
+              <div class="row">
+                    <div class="col-lg-12 mx-auto">
+                        <img class="img-responsive" src="{{ url_for('static', filename='images/rouge_F1.png') }}"> 
+                        <br>
+                    </div>
+              </div>
+        </div>
+
+
+
+      <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
                     <p class="lead text-left">Because of the poor quality of the "Summary" field in the Amazon Review data, the Encoder-Decoder models didn't perform as well as expected. For the existing tool, we opted to use the 3-layer LSTM based on the scores. But further improvements are necessary.</p>
 
                 </div>
-        </div>
+            </div>
+      </div>      
 
         <div class="container text-center">
               <div class="row">
