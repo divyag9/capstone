@@ -256,31 +256,13 @@ NAV SECTION
         <div class="container text-center">
               <div class="row">
                     <div class="col-lg-12 mx-auto">
-                        <img class="img-responsive" src="{{ url_for('static', filename='images/rouge_recall.png') }}"> 
+                        <img class="img-responsive" src="{{ url_for('static', filename='images/rouge_all.png') }}"> 
                         <br>
                     </div>
               </div>
         </div>
 
-        <div class="container text-center">
-              <div class="row">
-                    <div class="col-lg-12 mx-auto">
-                        <img class="img-responsive" src="{{ url_for('static', filename='images/rouge_precision.png') }}"> 
-                        <br>
-                    </div>
-              </div>
-        </div>
-
-        <div class="container text-center">
-              <div class="row">
-                    <div class="col-lg-12 mx-auto">
-                        <img class="img-responsive" src="{{ url_for('static', filename='images/rouge_F1.png') }}"> 
-                        <br>
-                    </div>
-              </div>
-        </div>
-
-
+      
 
       <div class="container">
             <div class="row">
@@ -299,6 +281,42 @@ NAV SECTION
                     </div>
               </div>
         </div>
+
+      <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <p class="lead text-left">The models were trained on an Amazon GPU(V100) EC2 instance for 20 epochs. The training for the 3-Layer LSTM lasted for approximately 15 hours. Following are examples of the model-generated summaries based on the original Summary and original Review text:</p>
+                    <br>
+                </div>
+            </div>
+      </div>   
+
+      <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <p class="lead text-left"><b>Review:</b> There a couple of problems with this phone. First, even though there is a SIM inserted in the phone, the phone will continue to display "insert SIM". The second problem is when I plug in the charger, the phone will display "unable to charge". I would like to know your return policy so I can return the phone for reimbursement.</p>
+                    <p class="lead text-left"><b>Original summary:</b> would like to know your return policy so can return </p>
+                    <p class="lead text-left text-primary"><b>Generated summary:</b> would like to know how to return this phone</p>
+                    <br>
+                    <p class="lead text-left"><b>Review:</b> Not the original one. Very bad product. To fragile. Is broken already only last week and half.  Fraud product. Bad quality. Not recommend to any one. Amazon don't advertise</p>
+                    <p class="lead text-left"><b>Original summary:</b> very bad product to fragile</p>
+                    <p class="lead text-left text-primary"><b>Generated summary:</b> bad quality</p>
+                    <br>
+                    <p class="lead text-left"><b>Review:</b> Not the phone in the picture or the picture on the bnx. The box isoriginal but not the phone. This is the second time. RAZR V3xx black is what I want not what I got. The old bait and switch.....</p>
+                    <p class="lead text-left"><b>Original summary:</b> bair and switch </p>
+                    <p class="lead text-left text-primary"><b>Generated summary:</b> the phone picture is the picture and the</p>
+                    <br>
+                </div>
+            </div>
+      </div>  
+
+    <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <p class="lead text-left">Based on the results above, we believe that with additional training data, specifically better 'Summary' data from Amazon reviews, the model precision will improve significantly. In the future, we would like the model to train for a longer period of time and continue to test with additional layers of the LSTM's.</p>
+                </div>
+            </div>
+      </div>  
 
 
 <<!-- FOOTER -->
