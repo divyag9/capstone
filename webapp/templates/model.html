@@ -52,8 +52,20 @@ NAV SECTION
                     <hr>
                     <p class="lead text-left">There were many steps and models explored in the creation of Too Long Didn't Watch, along with interesting challenges. As a team, we generally expected product review videos to be organized and relatively easy to "process" through NLP libraries. However, two areas  required significant attention.</p>
                     <p class="lead text-left">First, many videos are "auto-captioned" which means YouTube automatically adds captions but no punctuation. Video posters can add their own captions and include punctuation, but captioning a 20-min video can be tedious. The lack of punctuation provided a challenge when trying to identify sentences and associated product features with descriptors. Second, many product review videos are conversational in nature, complete with filler words (um's/uh's/you know/like) and frequent jumping back and forth between topics and product features.</p>
+                </div>
+            </div>
+    </div>
+
+
+    <div class="container bg-white text-center text-black">
+                 <!--  <div class="container" style="background: purple;">. -->
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2>Obtaining the Text</h2>
+                    <hr>
                     <p class="lead text-left">During the early stages of our project, one of the first tasks that needed to be explored was how to extract the audio from a review video and convert it to text.</p>
-                    <p class="lead text-left">Several methods were built including a function that extracted the audio track and then converted the audio track to text. YouTube also provides a library to extract captions from videos. This video caption extractor required only one step (vs 5 when first extracting the audio track), so we opted to use YouTube's caption extractor.</p>
+                    <p class="lead text-left">We initially built our own function that extracted the audio track and then converted the audio track to text. However, for ease of implementation, we opted to use AWS Transcribe to perform speech to text. AWS Transcribe also has the benefit of attempting to add punctuation to the output which our model wasn’t capable of doing.</p>
+                    <p class="lead text-left">A second method of acquiring text from a video is to extract the video caption directly from YouTube. We implemented a pipeline that would accept a URL and then pull the captions for the video directly from YouTube. This method proved to be a lot quicker and provided fairly good transcripts. However, the captions provided by YouTube do not always contain punctuation.</p>
                     <p class="lead text-left">After identifying the method to extract the video voice-over into text, we needed to figure out a way to extract keywords and sentences.</p>
                 </div>
             </div>
@@ -79,9 +91,25 @@ NAV SECTION
 
     <div class="container text-center">
           <div class="row">
-                <div class="col-lg-12 mx-auto">
-
-                  <img class="img-responsive" src="{{ url_for('static', filename='images/KW_Extractor_Models.png') }}"> 
+                <div class="col-lg-10 mx-auto">
+                  <ul>
+                  <li><b>Statitical Models:</b></li>
+                    <ul>
+                    <li>TF-IDF</li>
+                    <li>KP-Miner</li>
+                    <li>YAKE</li>
+                    <li>Custom RAKE</li>
+                    </ul> 
+                  <li><b>Graph-based Models:</b></li>
+                    <ul>
+                    <li>TextRank</li>
+                    <li>SingleRank</li>
+                    <li>TopicRank</li>
+                    <li>TopicalPageRank</li>
+                    <li>PositionRank</li>
+                    <li>MultipartiteRank</li>
+                    </ul> 
+                  </ul>
                   <hr>
                 </div>
           </div>
@@ -124,17 +152,7 @@ NAV SECTION
               </div>
           </div>
     </div>
-    
-        <div class="container text-center"
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                
-                    <p class="lead text-left">Because the sentiment filter removes neutral sentences, as well as slightly positive/negatie sentences, we tested scores with and without the sentiment filter. As seen in the table below, the models performed better when the sentiment filter was applied.</p>
-                    <br>
-                    <img class="img-responsive" src="{{ url_for('static', filename='images/sentiment_score.png') }}">
-                </div>
-            </div>
-        </div>
+
 
       <div class="container text-center"
             <div class="row">
@@ -143,12 +161,9 @@ NAV SECTION
                     <p class="lead text-left">Below is a snapshot of each model's performance when applying our custom scoring formula. Our end solution uses Singlerank (which is the green line).</p>
                     <br>
                     <h5>Keyword Extractor: Model Performance</h5>
-                    <div class="col-lg-8 mx-auto">
-                      <img class="img-responsive" src="{{ url_for('static', filename='images/kw_extract_performance.png') }}">
-                    </div>  
-                    <hr>
-                </div>
-            </div>
+                    <img class="img-responsive" src="{{ url_for('static', filename='images/kw_extract_performance.png') }}">
+                </div>  
+                <hr>
       </div>
 
 
@@ -164,23 +179,25 @@ NAV SECTION
       <div class="container text-center">
           <div class="row">
                 <div class="col-lg-10 mx-auto">
-                  <p class="lead text-left">In addition to providing sentiment-colored keywords as output for our user (green for positive, red for negative), we also thought it would be useful to show the entire narrative from the video. In order to do this, we needed to create a statement extractor. Again, this is because many videos do not come with customized captions that include punctuation.</p>
+                  <p class="lead text-left">After building the keyword extractor, we thought it would be useful to provide a way to generate descriptive statements and their corresponding sentiment.</p>
                   <br>
                   <img class="img-responsive" src="{{ url_for('static', filename='images/statement_extractor.png') }}"> 
                   <br>
                   <br>
-                  <p class="lead text-left">To begin, we manually review the text output and identify is/are statements that are useful for the user. Our code will then implement the following:</p>
+                  <p class="lead text-left">The general logic of the Statement Extractor is:</p>
                   <div class="col-lg-10 mx-auto text-left">
                     <li>Preprocess text to convert “it’s” to “it is”, and “they’re” to “they are”</li>
-                    <li>Find “is” or “are” tokens and use Spacy to extract the subtree associated with that token</li>
-                    <li>Review all words in the subtree to the left of the token and use POS (noun, adj, etc), TAG (VBN, UH, etc), and DEP (nsubj, expl, etc) to look for the subject of the statement</li>
-                    <li>Look words in the subtree to the right of the token and identify the most relevant description using the same method but a different set of rules</li>
+                    <li>Scan through the text to find all the “is” and “are” tokens and use Spacy to extract the subtree associated with that token</li>
+                    <li>Split the subtree into two halves: text before “is”/”are” and text after “is”/”are”</li>
+                    <li>Review all words in the subtree to the left of the token and use POS, TAG, and DEP to look for the subject of the statement</li>
+                    <li>Review all the words in the Subtree to the right of the “is” token and use POS, TAG, and DEP to look for the description of the statement</li>
                   </div>
                   <br>
-                  <p class="lead text-left">The above methods work with text that does not contain punctuation, but the rules must be stricter to extract coherent statements. The stricter rules also result in fewer sentences being extracted.</p>
-                  <p class="lead text-left">We also created a formula to score sentence extraction. Text output with punctuation performs well. But if text output does not include punctuation, stricter rules are required because there are more "missed guesses" which lowers the score. </p>
-                  <p class="lead text-left">One interesting note tying back to our initial observations regarding "conversational talk", filler words, and unorganized flow: if a product review video has a lot of useless is/are statements, our sentence scores may be negatively impacted because of the numerous "useless" sentence guesses in the output.</p>
-                  <p class="lead text-left">In the table below, it's important to note whether punctuation is included in the output automatically or not as videos including punctuation in the captions were much more easy to identify.</p>
+                  <br>
+                  <p class="lead text-left">When the text does not contain punctuation, the generated subtree might be pretty messy, so we have to implement stricter rules to extract coherent statements. The stricter rules also result in fewer sentences being extracted.</p>
+                  <p class="lead text-left">To evaluate the performance of the statement extractor, we made a list of all the useful “is”/”are” statements for each review video. We then generated the results for each video and calculated a score based on the equation shown below. That equation rewards points for matches and penalizes for predictions that weren’t useful and for useful statements that were missed. The maximum score is 1.</p>
+                  <p class="lead text-left">As shown in the table below, the statement extractor works pretty well with punctuated text. In this case, the score is mostly impacted by including statements that weren’t very useful. This is mainly an artifact of the reviewer being conversational and not always talking about the product.</p>
+                  <p class="lead text-left">Our model didn’t perform as well with unpunctuated review. We are losing most of our points from excluding useful statements as shown by the higher number of missed guesses. As mentioned above, this is a result of the stricter rules put in place with unpunctuated text. We werewilling to omit potentially useful statements in order to better generate coherent phrases.</p>
                 </div>
           </div>    
     </div>
@@ -207,7 +224,7 @@ NAV SECTION
         <div class="container text-center">
               <div class="row">
                     <div class="col-lg-10 mx-auto">
-                        <h3>Summarizer</h3>
+                        <h3>Product Phrases</h3>
                     </div>
               </div>
         </div>     
@@ -219,27 +236,30 @@ NAV SECTION
                     <p class="lead text-left">In order to create the Summarizer element in the output, the Amazon Reviews data was used. (For detailed information on the data, please reference the "Data" page on this site.)</p>
                     <p class="lead text-left">Before beginning supervised learning, the data was further cleaned. Reviews with the following were removed:</p>
                     <div class="col-lg-10 mx-auto text-left">
-                      <li>"Summary" field of the review (filled in by reviewer) included the word 'star' or only had two words</li>
+                      <li>"Summary" field of the review (filled in by reviewer) included the word 'star' or only had two words. We did this because many summaries had values such as 'one star' or 'five star' which did not provide a good enough summary for training the model.</li>
                       <li>Body of the review contained three or fewer words</li>
                       <li>Body of review was an HTML tag</li>
                     </div>
-                    <p class="lead text-left">Next, the data was used to train an Encoder-Decoder (Seq2Seq) model with attention. Four variations of the model were run to determine the ideal configuration.</p>
-                    <div class="col-lg-10 mx-auto text-left">
-                      <li>1. Encoder: single LSTM</li>
-                      <li>   Decoder: single LSTM</li>
-                      <li>2. Encoder: 3-layer LSTM</li>
-                      <li>   Decoder: single LSTM</li>
-                      <li>3. Encoder: single bi-LSTM</li>
-                      <li>   Decoder: single LSTM</li>
-                      <li>4. Encoder: 3-layer bi-directional LSTM's</li>
-                      <li>   Decoder: single LSTM</li>
+                    <p class="lead text-left">Next, the data was used to train an Encoder-Decoder (Seq2Seq) model with attention. While the Decoder remained a single-layer LSTM, four variations of the Encoder were run to determine the ideal configuration.</p>
+                    <div class="col-lg-10 mx-auto text-center">
+                      <p>1. Encoder: single-layer LSTM</p>
+                      <p>2. Encoder: 3-layer LSTM</p>
+                      <p>3. Encoder: single bi-LSTM</p>
+                      <p>4. Encoder: 3-layer bi-directional LSTM</p>
                     </div> 
                     <br>
                     <p class="lead text-left">We applied the Rouge score to identify the best variation. (Rouge is commonly used to evaluate NLP summarization. Rouge metrics compare an machine learning generated summary output to a human-produced piece of text. In this case the human-produced text is the Amazon Reviews data.)</p> 
-                    <p class="lead text-left">Because of the poor quality of the "Summary" field in the Amazon Review data, the Encoder-Decoder models didn't perform as well as expected. For the existing tool, we opted to use the 3-layer BiLSTM. But further improvements are necessary.</p> 
-                  </div>
+                    <p class="lead text-left">The 'Summary' field in the Amazon Reviews data is of poor quality to serve our purpose. This field is an Amazon-required field when someone wants to post a review. The requirement results in many reviewers entering the bare minimum amount of text to be compliant.</p>
+                    <p class="lead text-left">Data in the 'Summary' field is not what we would consider gold standard which is why we implemented a custom Rouge score. Our customization gave the model an advantage if the generated summary matches words in the review <b>as well as</b> words in the original summary.</p>
+                    <p class="lead text-left">Following is how we created the custom rouge score:</p>
+                    <br>
+                    <p class="lead text-center"><b>Recall</b> = # overlapping words between original and generated summary / # words in the original summary</p>
+                    <p class="lead text-center"><b>Custom Precision</b> = (# overlapping words between original and generated summary / # words in the generated summary) + (# overlapping words between review and generated summary / # words in the generated summary)</p>
+                    <p class="lead text-center"><b>Custom F1</b> = 2 * (CustomPrecision * Recall / CustomPrecision + Recall)</p>
+                    <br>
+                    <p class="lead text-left">Because of the poor quality of the "Summary" field in the Amazon Review data, the Encoder-Decoder models didn't perform as well as expected. For the existing tool, we opted to use the 3-layer LSTM based on the scores. But further improvements are necessary.</p>
+
                 </div>
-            </div>
         </div>
 
         <div class="container text-center">
