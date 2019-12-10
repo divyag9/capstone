@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base target="_self"> 
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script type=text/javascript>
+    $(document).ready(function() {
+        $(".review_button").click(function() {
+            // $("#text_input").text("{{video_text | safe}}");
+            $(".highsen").show();
+        });
+        $("#use_positive_sentence").click(function() {
+            $(".use_positive").each(function(){
+                $(this).show();
+            });
+        });
+        $("#sum_positive_sentence").click(function() {
+            $(".sum_positive").each(function(){
+                $(this).show();
+            });
+        });
+        $("#use_negative_sentence").click(function() {
+            $(".use_negative").each(function(){
+                $(this).show();
+            });
+        });
+        $("#sum_negative_sentence").click(function() {
+            $(".sum_negative").each(function(){
+                $(this).show();
+            });
+        });
+        $("#use_neutral_sentence").click(function() {
+            $(".use_neutral").each(function(){
+                $(this).show();
+            });
+        });
+        $("#sum_neutral_sentence").click(function() {
+            $(".sum_neutral").each(function(){
+                $(this).show();
+            });
+        });
+        $("#use_mixed_sentence").click(function() {
+            $(".use_mixed").each(function(){
+                $(this).show();
+            });
+        });
+        $("#sum_mixed_sentence").click(function() {
+            $(".sum_mixed").each(function(){
+                $(this).show();
+            });
+        });
+        $('#youtube_form').submit(function() {
+            $('#gif').css('visibility', 'visible');
+        });
+        $('#upload_form').submit(function() {
+            $('#gif').css('visibility', 'visible');
+        });
+    });
+  </script>
+
+</head>
+<body >
+      <!--
+NAVIGATION SECTION
+
+-->
+    <div class="">
+        <div class="container remove_padding">
+            <nav class="navbar navbar-fixed-top navbar-expand-md bg-purple navbar-dark">
+              <a class="navbar-brand align-self-start" href="#">TLDW; Too Long Didn't Watch</a>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link js-scroll-trigger" href="#tryit">Try It</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#model">Models/Architecture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#data">Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#team">The Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>    
+    </div>
+    
+
+    <div class="container remove_padding">
+
+        <!--
+
+AREA UNDER NAV BAR
+
+-->
+        <div class="col-lg-14 mx-auto">
+            <div class="card card-image">
+                <div class="overlay"></div>
+                <div class="overlay-text text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div class="mx-auto">
+                        <h6 class="purple-text"><i class="fas fa-plane"></i><strong></strong></h6>
+                        <h3 class="card-title py-3 font-weight-bold"><strong>TLDW; Too Long Didn't Watch</strong></h3>
+                        <h4 class="card-title py-3 font-weight-bold"><strong>Summarizing product review videos in minutes!</strong></h4>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--
+
+SECTION id = #tryit
+
+-->     
+        <section id="tryit">
+            <div class="container bg-purple text-white text-center">
+                <div class="row">
+                    <div class="col-lg-11 mx-auto">
+                        <br>
+                        <h4>Watching product review videos can be extremely time-consuming.</h4>
+                        <br>
+                        <p class="lead">That's why we created Too Long Didn't Watch, an app that let's you upload a video and quickly get a summary of the good and the bad when it comes to product features. Upload a product review video or simply paste a url below.</h4>
+                        <br>
+                    </div>
+                </div>
+                <div class="col-lg-12 mx-auto">
+                    <h2>Give it a try!</h2>
+                    <form action="/get_information_youtube" method="post" id='youtube_form'>
+                        <div class="mt-4 font-weight-bold">YouTube Url:</div>
+                        <!-- <div class="row text-center">
+                            <div class="col-sm-6">
+                                <input name="url" id="url" class="mt-2 col-lg-8 form-control" placeholder="youtube url" autofocus>
+                            </div>
+                            <div class="col-sm-4">    
+                                <input id="youtube" class="btn btn-md btn-info mt-4 justify-content-center" type="submit" value = "Submit">
+                            </div>
+                        </div> -->
+                        <input class="btn btn-md bg-white mt-4" name="url" id="url" placeholder="youtube url" style="width: 400px;" autofocus>
+                        <button class="btn btn-md btn-info mt-4" type="submit">Submit</button>
+                        <img src="{{ url_for('static', filename='images/spinner.gif') }}" id="gif" style="display: block; margin: 0 auto; width: 50px; visibility: hidden;">
+                    </form>
+
+                    <br>
+                    <h5>Or</h5>
+
+                    <form action="/get_information_upload" method="post" enctype="multipart/form-data" id='upload_form'>
+                        <label class="mt-4 font-weight-bold text-white" for="user_file">Upload video:</label>
+                        <br>
+                        <input class="btn btn-md bg-white mt-4" type="file" name="user_file" style="width: 400px;">
+                        <button class="btn btn-md btn-info mt-4" type="submit">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <br>
+    <!--
+
+APPLICATION
+
+-->
+    <!-- results section -->
+    <div class="container">
+        <div class="col-lg-12 mx-auto">
+            {% if video_text and 'error' not in video_text %}
+                <div>
+                    <!-- {% if video_available %}
+                      <video controls width="500" style="center">
+                        <source src="airpods.mp4" type="video/mp4" autoplay>
+                        Sorry, your browser doesn't support embedded videos.
+                      </video>
+                      <iframe width="420" height="315" src="{{url}}">
+                      </iframe>
+                    {% endif %} -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3 bg-success text-white text-center">
+                                Positive
+                            </div>
+                            <div class="col-sm-3 bg-red text-white text-center">
+                                Negative
+                            </div>
+                            <div class="col-sm-3 bg-orange text-white text-center">
+                                Mixed
+                            </div>
+                            <div class="col-sm-3 bg-ltgray text-white text-center">
+                                Neutral
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        {% if keywords and 'error' not in keywords %}
+                            <h5 class="mt-4 font-weight-bold">Keywords: </h5>
+                            {% for keyword in keywords %}
+                                <button {% if keyword[1] == 'POSITIVE' %} 
+                                        class="btn btn-ms btn-success mt-4 text-white review_button" 
+                                    {% elif keyword[1] == 'NEGATIVE' %}
+                                        class="btn btn-ms btn-danger mt-4 text-white review_button"
+                                    {% elif keyword[1] == 'MIXED' %}
+                                        class="btn btn-ms btn-warning mt-4 text-white review_button"
+                                    {% else %} 
+                                        class="btn btn-ms btn-secondary mt-4 text-white review_button"
+                                    {% endif %}>
+                                    {{keyword[0]}}
+                                </button>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {% if isare_sentences and 'error' not in isare_sentences  %}
+                                <h5 class="mt-4 font-weight-bold">Useful Phrases:</h5>
+                                {% for sentiment in isare_sentences %}
+                                    {% if isare_sentences[sentiment][0] %}
+                                        <div {% if sentiment == 'positive' %} 
+                                                class="mt-4 positive" 
+                                            {% elif sentiment == 'negative' %}
+                                                class="mt-4 negative"
+                                            {% elif sentiment == 'neutral' %}
+                                                class="mt-4 neutral"
+                                            {% else %} 
+                                                class="mt-4 mixed"
+                                            {% endif %} >
+                                            <div>{{sentiment}}: {{isare_sentences[sentiment][1]}}%</div>
+                                            {% for sentence in isare_sentences[sentiment][0][0:3] %}
+                                                <div>{{sentence}}</div>
+                                            {% endfor %}
+                                            <input type="button" class="btn btn-md btn-info mt-4" id="use_{{sentiment}}_sentence" value="See all {{sentiment}} phrases" />
+                                            {% for sentence in isare_sentences[sentiment][0][3:] %}
+                                                <div class="use_{{sentiment}}" style="display:none">{{sentence}}</div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+
+
+                        <div class="col-sm-6">
+                            {% if summarizer_sentences and 'error' not in summarizer_sentences  %}
+                                <h5 class="mt-4 font-weight-bold">Product Phrases:</h5>
+                                {% for sentiment in summarizer_sentences %}
+                                    {% if summarizer_sentences[sentiment][0] %}
+                                        <div {% if sentiment == 'positive' %} 
+                                                class="mt-4 positive" 
+                                            {% elif sentiment == 'negative' %}
+                                                class="mt-4 negative"
+                                            {% elif sentiment == 'neutral' %}
+                                                class="mt-4 neutral"
+                                            {% else %} 
+                                                class="mt-4 mixed"
+                                            {% endif %} >
+                                            <div>{{sentiment}}: {{summarizer_sentences[sentiment][1]}}%</div>
+                                            {% for sentence in summarizer_sentences[sentiment][0][0:3] %}
+                                                <div>{{sentence}}</div>
+                                            {% endfor %}
+                                            <input type="button" class="btn btn-md btn-info mt-4" id="sum_{{sentiment}}_sentence" value="See all {{sentiment}} phrases" />
+                                            {% for sentence in summarizer_sentences[sentiment][0][3:] %}
+                                                <div class="sum_{{sentiment}}" style="display:none">{{sentence}}</div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div>
+                        {% if full_sentiment and 'error' not in full_sentiment %}
+                            <h5 class="mt-4 font-weight-bold">Overall Sentiment:</h5>
+                            <div>
+                                <div class="mt-4 positive">Positive: {{full_sentiment[0]}}%</div>
+                                <div class="mt-4 negative">Negative: {{full_sentiment[1]}}%</div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <br></br>
+                    <div>
+                        {% if video_text_sentences %}
+                            <input type="button" class="btn btn-md btn-info mt-4 review_button" name="answer" value="Click here to see full review" />
+                            <br></br>
+                            <div class='highsen' style="display:none">
+                                <!-- <p id="text_input"></p> -->
+                                {% for sentence in video_text_sentences %}
+                                    {% if sentence in keyword_sentences %}
+                                        <span {% if keyword_sentences[sentence] == 'POSITIVE' %} 
+                                                class=" font-weight-bold positive" 
+                                            {% elif keyword_sentences[sentence] == 'NEGATIVE' %}
+                                                class="font-weight-bold negative"
+                                            {% elif keyword_sentences[sentence] == 'MIXED' %}
+                                                class="font-weight-bold mixed"
+                                            {% else %} 
+                                                class="neutral"
+                                            {% endif %} >
+                                            {{sentence | safe}}
+                                        </span>
+                                    {% else %}
+                                        {{sentence | safe}}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+            <div>
+                {% if error  %}
+                    <h4 class="mt-4 text-danger text-center font-weight-bold">{{error}}</h4>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!--
+
+SECTION id = #model
+
+-->
+    <br>
+    <div class="container bg-blue text-center text-white" id="model">
+             <!--  <div class="container" style="background: purple;">. -->
+        <div class="row">
+            <div class="col-lg-11 mx-auto">
+                <h2>Models/Architecture</h2>
+                <hr>
+                <p class="lead text-left">The core of our product revolves around three separate models: a keywords extractor, a phrase extractor, and a summarizer. The results of each of these models are fed into AWS Comprehend to extract sentiment for their respective outputs. We also have a separate model that assigns an overall sentiment to the review video.</p>
+                <p class="lead text-left">Our architecture leverages AWS EC2, S3, and Elastic Beanstalk. We provide the functionality to both extract the closed captions of the video directly fromYouTube, and to convert an mp4 file to text. The text is then fed into our stack of models and the output is presented in various view for the user.</p>
+                <h4 class="text-center">Architecture</h4>
+                <img class="img-responsive" src="{{ url_for('static', filename='images/arch_index.png') }}">
+                <br>
+                <br> 
+                <p class="lead">For a detailed look at how we did it, click the Learn More button.</p>
+                <a class="btn btn-secondary btn-sm" href="{{ url_for('model_func') }}" role="button">Learn More</a>
+            </div>
+        </div>
+    </div>
+    <!--
+
+SECTION id = #data
+
+-->
+    <br>
+    <section class="text-center" id="data">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-11 mx-auto">
+                        <h2>Data</h2>
+                        <hr>
+                        <p class="lead text-left">We used two forms of data to build our models: text extracted from product review videos, and Amazon Reviews data.</p>
+                        <p class="lead text-left">The Amazon Reviews data helped us get a sense for what information is included in product reviews. While we recognize a written review differs from a produt review, we found it helpful to identify product features and associated adjectives that would help our models highlight key terms and their descriptors.</p>
+                        <p class="lead text-left">Our process delievered some unexpected challenges, one of them being that product review videos are often delivered in a conversational, off-the-cuff manner that isn't necessarily organized or concise. A train-of-thought can pivot, people may forget what they want to say, or they suddenly remember something important even though it's off topic.</p>
+                        <p class="lead text-left">To read more about the data and how it was used for training, click the Learn More button.</p>
+                        <a class="btn btn-secondary btn-sm" href="{{ url_for('data_func') }}" role="button">Learn more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--
+
+SECTION id = #about
+
+-->
+    <br>
+    <div class="container text-center text-black bg-green" id="about">
+            <h2>Why Product Review Videos?</h2>
+            <hr>
+                <div class="row">
+                    <div class="col-lg-11 mx-auto">
+                
+                    <p class="lead text-left">In one word, INFLUENCE. Over the last several years, video product reviews on YouTube have become part of the pre-purchasing process of many consumers. Product reviews are among the most popular videos on YouTube because consumers trust the content presented and utilize the information given to inform their purchasing decisions.</p>
+
+                    <p class="lead text-left">Most businesses analyze their customer reviews in order to extract information that can drive product development decisions, identify trends, and isolated advantages for effective marketing strategies. Why shouldn’t the same be applied to product review videos? Since these video reviews hold so much influence over the purchasing decisions of the consumers, businesses should view these influencer-made reviews as an untapped source of valuable data.</p>
+                    <p class="lead text-left">However, product review videos take time to watch.</p>
+                    <p class="lead text-left">What if there was a tool that provided a quick way to extract useful sentiment related information? Product and marketing managers who want to see what is being said about their products in these video reviews could utilize our API to quickly extract the resulting information.</p>
+
+                    <p class="lead text-left">Read the full story, including interesting statistics on video product reviews, by clicking Learn More.</p>
+                    <a class="btn btn-secondary btn-sm" href="{{ url_for('about_func') }}" role="button">Learn more</a>
+                    </div>
+                </div>
+        </div>             
+    </div>
+    <!--
+
+SECTION id = #team
+
+-->
+    <br>
+    <section id="team">
+        <div class="container">
+            <div class="section-heading text-center">
+                <h2>The Team</h2>
+                <hr>
+            </div>
+
+                <div class="row text-center justify-content-center">
+              
+                      <div class="col-lg-6">
+                        <img src = "{{ url_for('static', filename='images/divya.png') }}" class="img-thumbnail">
+                        <a href=" https://www.linkedin.com/in/divyagorantla/">
+                        <br>
+                        <h4>Divya Gorantla</h4>
+                        <p class="text-muted">Divya Gorantla works as a data scientist at a health care organization. She develops machine learning tools that improve patient care. Her background is in software engineering, with a Masters in Computer Science. With the skills she attained through her Masters in Information and Data Science at UC Berkeley, she would like to apply the data science skills to product development.</p>
+                        <br>
+                      </div>
+                  
+
+                    <div class="col-lg-6">
+                        <img src = "{{ url_for('static', filename='images/armand.png') }}" class="img-thumbnail">
+                        <a href=" https://www.linkedin.com/in/armand-kok-203bb510/">
+                        <br>
+                        <h4>Armand Kok</h4>
+                        <p class="text-muted">Armand is a Data Scientist with a background in mathematics and computer science. He has extensive experience using predictive modeling, data processing, and data-mining algorithms. Armand's passion focuses on employing interpretable machine learning and statistics to deliver easy-to-understand, data-driven solutions.</p>
+                        <br>
+                    </div>
+
+              
+                </div>   
+                    
+<!-- second row -->
+                <div class="row text-center justify-content-center">
+              
+                      <div class="col-lg-6">
+                        <img src = "{{ url_for('static', filename='images/krysten.png') }}" class="img-thumbnail">
+                        <a href=" https://www.linkedin.com/in/krystenthompson/">
+                        <br>
+                        <h4>Krysten Thompson</h4>
+                        <p class="text-muted">Krysten found a passion in data science and machine learning while working at a data analytics start-up in San Francisco. To pivot from a career in eCommerce, Krysten decided to pursue her Master's degree in Information & Data Science from the University of California, Berkeley. Krysten graduates in December 2019 and has already been working in her dream job as a Data Scientist at IBM in the AI/ML Emerging Technologies Group.</p>
+
+                      </div>
+              
+
+                      <div class="col-lg-6">
+                        <img src = "{{ url_for('static', filename='images/adam.png') }}" class="img-thumbnail">
+                        <a href=" https://www.linkedin.com/in/adam-yang/">
+                        <br>
+                        <h4>Adam Yang</h4>
+                        <p class="text-muted">Adam Yang has discovered a new love for model building and leveraging data to inform design decisions. His background is in Electrical Engineering with a Bachelor's degree from University of Illinois at Urbana Champaign and a Master's degree from Georgia Institute of Technology. His current role is with IBM's systems development team where he discovered how data plays into all aspects of technology design. This discovery drove him to enroll in UC Berkeley's Master of Information and Data Science program, from which he will graduate in December 2019. His dream is to continue driving technology forward now that he's armed himself with a vast arsenal of data science tools.</p>
+
+                      </div>
+
+              
+                </div>  
+        </div>
+    </section>      
+
+<!-- Footer -->
+    <br>
+    <br>
+    <div class="row text-center justify-content-center">         
+    <div class="col-lg-6">
+
+            <footer class="footer px-5">
+            <p>© VideoReview 2019</p>
+            </footer>
+        </div>   
+    </div> 
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+  <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+  
+</body>
+</html>

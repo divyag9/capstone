@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base target="_self"> 
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" /> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body >
+
+<!--
+NAVIGATION SECTION
+
+-->
+     <div class="">
+        <div class="container remove_padding">
+            <nav class="navbar navbar-fixed-top navbar-expand-md bg-purple navbar-dark">
+              <a class="navbar-brand align-self-start" href="/">TLDW; Too Long Didn't Watch</a>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link js-scroll-trigger" href="/">Try It</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/model">Models/Architecture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/data">Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/">The Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/about">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>    
+    </div>
+    <br>
+
+<!-- CONTENT SECTION -->
+
+    <div class="container text-center text-black bg-ltblue">
+                 <!--  <div class="container" style="background: purple;">. -->
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2>Why Create TLDW; Too Long Didn't Watch?</h2>
+                    <br>
+                    <p class="lead text-left">As product review videos grow in popularity, one potential drawback is the time commitment required to watch a 10 to 30 minute long video. Wouldn't it be great if there was a way to get the highlights from a product review video without having to watch it? That's how Too Long Didn't Watch came to be.</p>
+
+                    <p class="lead text-left">Though a consumer might use TLDW to quickly get the gist of a product review video, the main audience for this tool are businesses who want to quickly extract information from tens or hundreds of product review videos at once. Currently our product is only a prototype that works on one video at a time, but our long-term goal is to allow businesses to upload multiple videos at a time and receive the information in an aggregated, summarized, and organized format.</p>
+                    <p class="lead text-left">Businesses can find out what influencers are saying about their product. And an aggregated view could provide the equivalent of focus group feedback. As part of our long-term strategy, we would like to conduct our own research with product and marketing managers to better understand what output would be most useful.</p>
+              
+                    <p class="lead text-left">Take a look at some interesting statistics on product review videos:</p>
+                    <br>
+
+                </div>
+            </div>
+      </div>
+
+      <br>
+      <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <img class="img-responsive" src="{{ url_for('static', filename='images/about1.png') }}">             
+                <hr class="d-sm-none">
+            </div>
+            <div class="col-sm-4">
+                <h2>As of 2019, online product reviews influence the purchase decisions for 93% of consumers.[1]</h2>
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+          <div class="container bg-info text-white text-center">
+            <div class="row">
+                <div class="col-lg-11 mx-auto">
+                    <h2>Reputation matters!</h2>
+                    <br>
+                    <h3 class="text-left">Amazon and Yelp have admitted a problem with fake reviews over the past 7 years leading both companies to alter algorithms and file lawsuits against sellers who post fake reviews.[2]</h3>
+                </div>
+            </div>    
+        </div>
+
+    <div class="container bg-info text-center">
+          <div class="row">
+              <div class="col-lg-11 mx-auto">
+                <img class="img-responsive" src="{{ url_for('static', filename='images/amazonYelp.png') }}"> 
+
+              </div>
+          </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="container bg-green">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Behavioral changes between generations has influenced which categories of videos are most popular on YouTube. Among Millennials and Gen Z, product reviews and unboxing videos fall in the top three categories of watched content on 
+                YouTube.[3]</h3>
+            </div>
+
+            <div class="col-sm-6">
+                <img class="img-responsive" src="{{ url_for('static', filename='images/genZ.png') }}">
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+      <div class="container bg-white text-black">
+
+            <div class="row">
+                <div class="col-lg-12 mx-auto">
+                        <p class="lead text-left">
+                        <b>[1] “20 Online Review Stats to Know"</b>
+                        <br>
+                         April 9, 2019
+                        <br>
+                        <a href="https://www.qualtrics.com/blog/online-review-stats/">Article</a>
+                        </p>
+                        <p class="lead text-left">
+                        <b>[2] “Yelp vs Google: How They Deal with Fakes"</b>
+                        <br>
+                         November 1, 2018
+                        <br>
+                        <a href="https://searchengineland.com/yelp-vs-google-how-do-they-deal-with-fake-reviews-307332">Article</a>
+                        <br>
+                        <br>
+                        <b>“The FTC just prosecuted a fake paid Amazon review for the first time -- here’s what that means for users"</b>
+                        <br>
+                         March 1, 2019
+                        <br>
+                        <a href="https://www.cnbc.com/2019/03/01/ftc-cracking-down-on-fake-amazon-reviews.html">Article</a>
+                        </p>
+                        <br>
+                        <p class="lead text-left">
+                        <b>[3] “The Most Popular Types of YouTube Videos"</b>
+                        <br>
+                         May 16, 2019
+                        <br>
+                        <a href="https://mediakix.com/blog/most-popular-youtube-videos/">Article</a>
+                        <br>
+                        <br>
+                        <b>“YouTube User Statistics by Generation"</b>
+                        <br>
+                         February 20, 2019
+                        <br>
+                        <a href="https://www.theshelf.com/the-blog/youtube-habits">Article</a>
+                        </p>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+<<!-- FOOTER -->
+    <br>
+    <br>
+    <div class="row text-center justify-content-center">
+              
+        <div class="col-lg-6">
+
+            <footer class="footer px-5">
+            <p>© VideoReview 2019</p>
+            </footer>
+        </div>   
+    </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/scripts.js"></script>
+</body>
+</html>
+
+
+
+

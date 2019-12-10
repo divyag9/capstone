@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base target="_self"> 
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script type=text/javascript>
+    $(document).ready(function() {
+        $("#review_button").click(function() {
+            $("#text_input").text("{{video_text | safe}}");
+        });
+        $("#pos_sentence").click(function() {
+            $("#pos").each(function(){
+                $(this).show()
+            });
+        });
+        $("#neg_sentence").click(function() {
+            $("#neg").show();
+        });
+        $("#neu_sentence").click(function() {
+            $("#neu").show();
+        });
+        $("#mixed_sentence").click(function() {
+            $("#mixed").show();
+        });
+    });
+  </script>
+</head>
+<body >
+      <!--
+NAVIGATION SECTION
+
+-->
+    <div class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-md bg-purple navbar-dark">
+                <a class="navbar-brand align-self-start" href="#">2 Many 2 Watch</a>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link js-scroll-trigger" href="#tryit">Try It</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#model">Models/Architecture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#data">Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#team">The Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <!--
+
+AREA UNDER NAV BAR
+
+-->
+        <div class="col-lg-14 mx-auto">
+            <div class="card card-image">
+                <div class="overlay"></div>
+                <div class="overlay-text text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div class="mx-auto">
+                        <h6 class="purple-text"><i class="fas fa-plane"></i><strong></strong></h6>
+                        <h3 class="card-title py-3 font-weight-bold"><strong>2 Many 2 Watch</strong></h3>
+                        <p class="lead">Summarizing product review videos in minutes!</p>
+                        <!--      <a class="btn btn-secondary btn-rounded"><i class="far fa-clone left"></i> View project</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--
+
+SECTION id = #tryit
+
+-->
+        <section id="tryit">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 mx-auto">
+                        <h2></h2>
+                        <p class="lead">We know watching product review videos can be extremely time-consuming. That's why we created "2 Many 2 Watch", an app that let's you upload a video and see a list of product features along with a sentiment score. The sentiment score provides a gauge on how positive or negative the comments were in the video about that particular feature. Give it a try! Simply paste in the url to a product review video below and click Upload.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!--
+
+APPLICATION
+
+-->
+    <section id="tool">
+        <div class="container">
+            <div class="col-lg-12 mx-auto">
+                <h2>Upload a Video</h2>
+                <form action="/get_information_youtube" method="post">
+                    <div class="mt-4 font-weight-bold">Youtube Url: </div><input name="url" id="url" class="mt-2 form-control" placeholder="youtube url" autofocus>
+                    <input id="youtube" class="btn btn-md btn-primary mt-4" type="submit" value = "Upload">
+                </form>
+
+                <br>
+                <div class="mt-4 font-weight-bold">Or</div>
+                <br>
+
+                <form action="/getkeywords_mp4" method="post" enctype="multipart/form-data">
+                    <label class="mt-4 font-weight-bold" for="user_file">Upload video for review:</label>
+                    <br>
+                    <input class="btn btn-md btn-primary mt-4" type="file" name="user_file">
+                    <button class="btn btn-md btn-primary mt-4" type="submit">Upload</button>
+                </form>
+
+                <div>
+                    {% if video_available %}
+                      <video controls width="500" style="center">
+                        <source src="airpods.mp4" type="video/mp4" autoplay>
+                        Sorry, your browser doesn't support embedded videos.
+                      </video>
+                      <!-- <iframe width="420" height="315" src="{{url}}">
+                      </iframe> -->
+                    {% endif %}
+                    </div>
+                    <div>
+                        {% if keywords %}
+                            <div class="mt-4 font-weight-bold">Keywords: </div>
+                        {% endif %}
+                        {% for keyword in keywords %}
+                            <div {% if keyword[1] == 'POSITIVE' %} 
+                                    class="btn btn-ms btn-success mt-4 text-white" 
+                                {% elif keyword[1] == 'NEGATIVE' %}
+                                    class="btn btn-ms btn-danger mt-4 text-white"
+                                {% elif keyword[1] == 'MIXED' %}
+                                    class="btn btn-ms btn-warning mt-4 text-white"
+                                {% else %} 
+                                    class="btn btn-ms btn-secondary mt-4 text-white"
+                                {% endif %} >
+                                {{keyword[0]}}
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- <br></br>
+                    <input type="button" class="btn btn-md btn-primary mt-4" id="review_button" name="answer" value="See full review" />
+                    <br></br>
+                    <p id="text_input"></p> -->
+
+
+                    <div>
+                        {% if isare_sentences  %}
+                            <div class="mt-4 font-weight-bold">Useful Phrases:</div>
+                        {% endif %}
+                        {% for sentiment in isare_sentences %}
+                            {% if isare_sentences[sentiment] %}
+                                <div {% if sentiment == 'pos' %} 
+                                        class="mt-4 positive" 
+                                    {% elif sentiment == 'neg' %}
+                                        class="mt-4 negative"
+                                    {% elif sentiment == 'mixed' %}
+                                        class="mt-4 mixed"
+                                    {% else %} 
+                                        class="mt-4 neutral"
+                                    {% endif %} >
+                                    {% for sentence in isare_sentences[sentiment][0:3] %}
+                                        <div>{{sentence}}</div>
+                                    {% endfor %}
+                                    <input type="button" class="btn btn-md btn-primary mt-4 positive" id="{{sentiment}}_sentence" value="See all {{sentiment}} phrases" />
+                                    {% for sentence in isare_sentences[sentiment][3:] %}
+                                        <div id="{{sentiment}}" style="display:none">{{sentence}}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+
+                </div>
+        </div>
+    </section>
+    <!--
+
+SECTION id = #model
+
+-->
+    <section id="model">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mx-auto">
+                    <div class="jumbotron d-flex flex-column justify-content-center">
+                        <h2>Models/Architecture</h2>
+                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--
+
+SECTION id = #data
+
+-->
+    <section id="data">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mx-auto">
+                    <div class="jumbotron d-flex flex-column justify-content-center">
+                        <h2>Data</h2>
+                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--
+
+SECTION id = #about
+
+-->
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mx-auto">
+                    <div class="jumbotron d-flex flex-column justify-content-center">
+                        <h2>About the product:</h2>
+                        <p class="lead">As of 2019, online product reviews influence the purchase decisions for 93% of consumers.[1] An astute product or marketing manager would not take this statistic lightly. Further investigation into the reputation for the sources of online reviews and the method by which consumers seek out reviews is also critical. For example, Amazon and Yelp have admitted a problem with fake reviews over the past 7 years leading both companies to alter algorithms and file lawsuits against sellers who post fake reviews.[2] And what about video vs. text product reviews? Video product reviews are gaining traction for several reasons. Some claim that watching a person review a product in a video, see their face, and talk about it is easier to trust than anonymously posted comments. And behavioral changes between generations has influenced which categories of videos are most popular on YouTube. Among Millennials and Gen Z, product reviews and unboxing videos fall in the top three categories of watched content on YouTube.[3] All of the above would (hopefully) lead a product and/or marketing manager to want to understand what people are saying about their product in video reviews. But who has time to watch hundreds of videos and keep up-to-date on new postings? Introducing [our product name]. An easy way to curate what people are saying about your product. Simply upload a video and let us do the work for you. We can tell you which product features are discussed in the video and assign a sentiment score to each feature. As a use case, [our product name] focuses specifically on [TV’s, electronics, whatever we decide]. We decided on this category because [some statistic here].</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--
+
+SECTION id = #team
+
+-->
+    <section id="team">
+        <div class="container">
+            <div class="jumbotron mt-4">
+                <form class="mt-4" method="post">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="font-weight-bold">Adam Yang </span>
+                            <div>More about Adam</div>
+                        </div>
+                        <div class="col-md-3"> 
+                            <span class="font-weight-bold">Armand Kok </span> <div>More about Armand</div>
+                        </div>
+                        <div class="col-md-3"> 
+                            <span class="font-weight-bold">Divya Gorantla </span> <div>More about Divya</div>
+                        </div>
+                        <div class="col-md-3"> 
+                            <span class="font-weight-bold">Krysten Thompson </span> <div>More about Krysten</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer class="footer px-5">
+        <p>© VideoReview 2019</p>
+    </footer>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+  <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>

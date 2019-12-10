@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base target="_self"> 
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" /> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body >
+
+<!--
+NAV SECTION
+-->    
+
+    <div class="">
+        <div class="container remove_padding">
+            <nav class="navbar navbar-fixed-top navbar-expand-md bg-purple navbar-dark">
+              <a class="navbar-brand align-self-start" href="/">TLDW; Too Long Didn't Watch</a>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link js-scroll-trigger" href="/">Try It</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/model">Models/Architecture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/data">Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/">The Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/about">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>    
+    </div>
+
+
+<!-- CONTENT SECTION -->
+
+    <div class="container bg-white text-center text-black">
+                 <!--  <div class="container" style="background: purple;">. -->
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2>Models & Architecture</h2>
+                    <hr>
+                    <p class="lead text-left">There were many steps and models explored in the creation of Too Long Didn't Watch, along with interesting challenges. As a team, we generally expected product review videos to be organized and relatively easy to "process" through NLP libraries. However, two areas  required significant attention.</p>
+                    <p class="lead text-left">First, many videos are "auto-captioned" which means YouTube automatically adds captions but no punctuation. Video posters can add their own captions and include punctuation, but captioning a 20-min video can be tedious. The lack of punctuation provided a challenge when trying to identify sentences and associated product features with descriptors. Second, many product review videos are conversational in nature, complete with filler words (um's/uh's/you know/like) and frequent jumping back and forth between topics and product features.</p>
+                </div>
+            </div>
+    </div>
+
+
+    <div class="container bg-white text-center text-black">
+                 <!--  <div class="container" style="background: purple;">. -->
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2>Obtaining the Text</h2>
+                    <hr>
+                    <p class="lead text-left">During the early stages of our project, one of the first tasks that needed to be explored was how to extract the audio from a review video and convert it to text.</p>
+                    <p class="lead text-left">We initially built our own function that extracted the audio track and then converted the audio track to text. However, for ease of implementation, we opted to use AWS Transcribe to perform speech to text. AWS Transcribe also has the benefit of attempting to add punctuation to the output which our model wasn’t capable of doing.</p>
+                    <p class="lead text-left">A second method of acquiring text from a video is to extract the video caption directly from YouTube. We implemented a pipeline that would accept a URL and then pull the captions for the video directly from YouTube. This method proved to be a lot quicker and provided fairly good transcripts. However, the captions provided by YouTube do not always contain punctuation.</p>
+                    <p class="lead text-left">After identifying the method to extract the video voice-over into text, we needed to figure out a way to extract keywords and sentences.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container text-center">
+              <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <h3>Keyword Extractor</h3>
+                    </div>
+              </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <p class="lead text-left">We defined keywords as product features with associated decriptors and experimented with many models.</p> 
+                </div>
+            </div>    
+        </div>
+
+
+    <div class="container text-center">
+          <div class="row">
+                <div class="col-lg-8 mx-auto text-left">
+                      <p class="lead text-left"><b>Statitical Models:</b></p>
+                      <p class="lead text-left">TF-IDF</p>
+                      <p class="lead text-left">KP-Miner</p>
+                      <p class="lead text-left">YAKE</p>
+                      <p class="lead text-left">Custom RAKE</p>
+                      <br>
+                      <br> 
+                      <p class="lead text-left"><b>Graph-based Models:</b></p>
+                      <p class="lead text-left">TextRank</p>
+                      <p class="lead text-left">SingleRank</p>
+                      <p class="lead text-left">TopicRank</p>
+                      <p class="lead text-left">TopicalPageRank</p>
+                      <p class="lead text-left">PositionRank</p>
+                      <p class="lead text-left">MultipartiteRank</p>
+                      <hr>
+                </div>
+          </div>
+    </div>
+
+
+        <div class="container">
+                 <!--  <div class="container" style="background: purple;">. -->
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <p class="lead text-left"><p class="lead text-left">An example of keyword output for each model is shown below. We noticed that the majority of keywords are usually in sentences that have a very positive sentiment or very negative sentiment. Rarely do we find keywords in sentences that have a neutral sentiment, or just a slightly positive/negative sentiment. So we implemented a sentiment filter to aid in identifying keywords. The sentiment filter "removes" the less useful sentences prior to keyword extraction.</p>
+                </div>
+            </div>    
+        </div>
+
+      <div class="container text-center">
+          <div class="row">
+                <div class="col-lg-12 mx-auto">
+                  <h5>Keyword Extractor: Example Output</h5>
+                  <img class="img-responsive" src="{{ url_for('static', filename='images/KW_output.png') }}"> 
+
+                </div>
+          </div>
+      </div>
+
+      <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <p class="lead text-left">To quantitatively score our models' performance, we developed our own formula. This required us to manually read video text output and highlight relevant keywords (because we did not have training data). The process helped us visually identify what should be included in the output. During the manual review process we also noticed that keywords tend to be in sentences that have fairly strong negative or positive sentiment. Hence our application of a sentiment filter.</p> 
+                    <p class="lead text-left">Rationale for the formula below is our desire for balance between the number of keywords that are correct and the number of keywords actually generated. The likelihood of getting more correct keywords is partially a function of simply generating more keywords overall. But this results in also getting more incorrect keywords which defeats the purpose of the model. Our end goal is to deliver as many correct keywords with the least amount of overall keywords generated. Our score calculation:</p>
+                </div>
+            </div>    
+        </div>
+
+    <div class="container text-center bg-info">
+          <div class="row">
+              <div class="col-lg-8 mx-auto">
+                <img class="img-responsive" src="{{ url_for('static', filename='images/score.png') }}"> 
+
+              </div>
+          </div>
+    </div>
+
+
+      <div class="container text-center"
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                
+                    <p class="lead text-left">Below is a snapshot of each model's performance when applying our custom scoring formula. Our end solution uses Singlerank (which is the green line).</p>
+                    <br>
+                    <h5>Keyword Extractor: Model Performance</h5>
+                    <img class="img-responsive" src="{{ url_for('static', filename='images/kw_extract_performance.png') }}">
+                </div>  
+                <hr>
+      </div>
+
+
+        <div class="container text-center">
+              <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <h3>Statement/Phrase Extractor</h3>
+                    </div>
+              </div>
+        </div>            
+
+
+      <div class="container text-center">
+          <div class="row">
+                <div class="col-lg-10 mx-auto">
+                  <p class="lead text-left">After building the keyword extractor, we thought it would be useful to provide a way to generate descriptive statements and their corresponding sentiment.</p>
+                  <br>
+                  <img class="img-responsive" src="{{ url_for('static', filename='images/statement_extractor.png') }}"> 
+                  <br>
+                  <br>
+                  <p class="lead text-left">The general logic of the Statement Extractor is:</p>
+                  <div class="col-lg-10 mx-auto text-left">
+                    <li>Preprocess text to convert “it’s” to “it is”, and “they’re” to “they are”</li>
+                    <li>Scan through the text to find all the “is” and “are” tokens and use Spacy to extract the subtree associated with that token</li>
+                    <li>Split the subtree into two halves: text before “is”/”are” and text after “is”/”are”</li>
+                    <li>Review all words in the subtree to the left of the token and use POS, TAG, and DEP to look for the subject of the statement</li>
+                    <li>Review all the words in the Subtree to the right of the “is” token and use POS, TAG, and DEP to look for the description of the statement</li>
+                  </div>
+                  <br>
+                  <br>
+                  <p class="lead text-left">When the text does not contain punctuation, the generated subtree might be pretty messy, so we have to implement stricter rules to extract coherent statements. The stricter rules also result in fewer sentences being extracted.</p>
+                  <p class="lead text-left">To evaluate the performance of the statement extractor, we made a list of all the useful “is”/”are” statements for each review video. We then generated the results for each video and calculated a score based on the equation shown below. That equation rewards points for matches and penalizes for predictions that weren’t useful and for useful statements that were missed. The maximum score is 1.</p>
+                  <p class="lead text-left">As shown in the table below, the statement extractor works pretty well with punctuated text. In this case, the score is mostly impacted by including statements that weren’t very useful. This is mainly an artifact of the reviewer being conversational and not always talking about the product.</p>
+                  <p class="lead text-left">Our model didn’t perform as well with unpunctuated review. We are losing most of our points from excluding useful statements as shown by the higher number of missed guesses. As mentioned above, this is a result of the stricter rules put in place with unpunctuated text. We werewilling to omit potentially useful statements in order to better generate coherent phrases.</p>
+                </div>
+          </div>    
+    </div>
+
+      <div class="container text-center">
+              <div class="row">
+                    <div class="col-lg-12 mx-auto">
+                        <img class="img-responsive" src="{{ url_for('static', filename='images/statement_formula.png') }}"> 
+                        <br>
+                    </div>
+              </div>
+        </div>
+
+          <div class="container"
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <p class="lead text-left">Per the above table, the scores for accuracy of sentence extraction <b>when captions include punctuation</b> is significantly better than when the video captions do not contain punctutation. The number of Missed Guesses ranged between <b>3%-6% for sentences with punctutation</b> versus <b>24%-39% for sentences without punctuation.</b></p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container text-center">
+              <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <h3>Product Phrases</h3>
+                    </div>
+              </div>
+        </div>     
+
+
+        <div class="container"
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <p class="lead text-left">In order to create the Summarizer element in the output, the Amazon Reviews data was used. (For detailed information on the data, please reference the "Data" page on this site.)</p>
+                    <p class="lead text-left">Before beginning supervised learning, the data was further cleaned. Reviews with the following were removed:</p>
+                    <div class="col-lg-10 mx-auto text-left">
+                      <li class="lead text-left">"Summary" field of the review (filled in by reviewer) included the word 'star' or only had two words. We did this because many summaries had values such as 'one star' or 'five star' which did not provide a good enough summary for training the model.</li>
+                      <li class="lead text-left">Body of the review contained three or fewer words</li>
+                      <li class="lead text-left">Body of review was an HTML tag</li>
+                    </div>
+                    <br>
+                    <p class="lead text-left">Next, the data was used to train an Encoder-Decoder (Seq2Seq) model with attention. While the Decoder remained a single-layer LSTM, four variations of the Encoder were run to determine the ideal configuration.</p>
+                    <div class="col-lg-10 mx-auto text-left">
+                      <p class="lead text-left">1. Encoder: single-layer LSTM</p>
+                      <p class="lead text-left">2. Encoder: 3-layer LSTM</p>
+                      <p class="lead text-left">3. Encoder: single bi-LSTM</p>
+                      <p class="lead text-left">4. Encoder: 3-layer bi-directional LSTM</p>
+                    </div> 
+                    <br>
+                    <p class="lead text-left">We applied the Rouge score to identify the best variation. (Rouge is commonly used to evaluate NLP summarization. Rouge metrics compare an machine learning generated summary output to a human-produced piece of text. In this case the human-produced text is the Amazon Reviews data.)</p> 
+                    <p class="lead text-left">The 'Summary' field in the Amazon Reviews data is of poor quality to serve our purpose. This field is an Amazon-required field when someone wants to post a review. The requirement results in many reviewers entering the bare minimum amount of text to be compliant.</p>
+                    <p class="lead text-left">Data in the 'Summary' field is not what we would consider gold standard which is why we implemented a custom Rouge score. Our customization gave the model an advantage if the generated summary matches words in the review <b>as well as</b> words in the original summary.</p>
+                    <p class="lead text-left">Following is how we created the custom rouge score:</p>
+                    <br>
+                </div>
+        </div>
+
+        <div class="container text-center">
+              <div class="row">
+                    <div class="col-lg-12 mx-auto">
+                        <img class="img-responsive" src="{{ url_for('static', filename='images/rouge_all.png') }}"> 
+                        <br>
+                    </div>
+              </div>
+        </div>
+
+      
+
+      <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <p class="lead text-left">Because of the poor quality of the "Summary" field in the Amazon Review data, the Encoder-Decoder models didn't perform as well as expected. For the existing tool, we opted to use the 3-layer LSTM based on the scores. But further improvements are necessary. Especially since the model sometimes tends to get confused between the products, we might need separate models for each product and then combine. 
+
+                    We created a subject extractor to identify the product in the review by looking for an overlap between top frequent noun(with length of atleast 3 letters) and the entites in the review. The entities were generated using named entity recognizer that is part of nltk package. Summaries were generated for the phrases that mentioned the product.  </p>
+
+                </div>
+            </div>
+      </div>      
+
+        <div class="container text-center">
+              <div class="row">
+                    <div class="col-lg-12 mx-auto">
+                        <img class="img-responsive" src="{{ url_for('static', filename='images/LSTM.png') }}"> 
+                        <br>
+                    </div>
+              </div>
+        </div>
+
+      <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <p class="lead text-left">The models were trained on an Amazon GPU(V100) EC2 instance for 20 epochs. The training for the 3-Layer LSTM lasted for approximately 15 hours. Following are examples of the model-generated summaries based on the original Summary and original review text:</p>
+                    <br>
+                </div>
+            </div>
+      </div>   
+
+      <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <p class="lead text-left"><b>Review:</b> There a couple of problems with this phone. First, even though there is a SIM inserted in the phone, the phone will continue to display "insert SIM". The second problem is when I plug in the charger, the phone will display "unable to charge". I would like to know your return policy so I can return the phone for reimbursement.</p>
+                    <p class="lead text-left"><b>Original summary:</b> would like to know your return policy so can return </p>
+                    <p class="lead text-left text-primary"><b>Generated summary:</b> would like to know how to return this phone</p>
+                    <br>
+                    <p class="lead text-left"><b>Review:</b> Not the original one. Very bad product. To fragile. Is broken already only last week and half.  Fraud product. Bad quality. Not recommend to any one. Amazon don't advertise</p>
+                    <p class="lead text-left"><b>Original summary:</b> very bad product to fragile</p>
+                    <p class="lead text-left text-primary"><b>Generated summary:</b> bad quality</p>
+                    <br>
+                    <p class="lead text-left"><b>Review:</b> Not the phone in the picture or the picture on the bnx. The box isoriginal but not the phone. This is the second time. RAZR V3xx black is what I want not what I got. The old bait and switch.....</p>
+                    <p class="lead text-left"><b>Original summary:</b> bair and switch </p>
+                    <p class="lead text-left text-primary"><b>Generated summary:</b> the phone picture is the picture and the</p>
+                    <br>
+                </div>
+            </div>
+      </div>  
+
+    <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <p class="lead text-left">Based on the results above, we believe that with additional training data, specifically better 'Summary' data from Amazon reviews, the model precision will improve significantly. In the future, we would like the model to train for a longer period of time and continue to test with other variations of the encoder-decoder model.</p>
+                    <hr>
+                </div>
+            </div>
+      </div>  
+
+
+      <div class="container text-center">
+              <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <h3>Overall Sentiment Score</h3>
+                        <br>
+                        <p class="lead text-left">We thought it would be useful to give the viewer a quick look at the overall sentiment of the product review before diving into the details of the video.</p>
+                        <p class="lead text-left">Our approach was simple. First we determine the sentiment of each sentence, then calculate the percentage of positive sentences (ignoring mixed and neutral sentences). However, we were limited by the slowness of AWS Comprehend when pulling sentiment for each sentence. To speed up the calculation, we decided to only look at sentences that contain adjectives, and then randomly sample 100 sentences from that group. The results were quite good and reflect a +/- 5% error.</p>
+                    </div>
+              </div>
+        </div>   
+  
+
+
+<<!-- FOOTER -->
+    <br>
+    <br>
+    <div class="row text-center justify-content-center">
+              
+        <div class="col-lg-6">
+
+            <footer class="footer px-5">
+            <p>© VideoReview 2019</p>
+            </footer>
+        </div>   
+    </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/scripts.js"></script>
+</body>
+</html>
+

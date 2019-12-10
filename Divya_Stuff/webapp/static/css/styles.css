@@ -1,0 +1,121 @@
+body {
+    padding-top: 10px;
+}
+
+.remove_padding{
+    padding-bottom: 0px!important;
+    padding-top:0px!important;
+
+}
+.navbar {
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.navbar.navbar-inverse .navbar-brand {
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+.card-image {
+    background-image: url('/static/images/header.png');
+    background-position: center center;
+}
+
+.bg-ltgray {
+    background-color: #A9A7A6;
+}
+
+.bg-purple {
+    background-color: #a68fcf;
+}
+
+.bg-red {
+    background-color: #df2020;
+}
+
+
+.bg-brightred {
+    background-color: #ff0000;
+}
+
+.bg-orange {
+    background-color: #ff9a00;
+}
+
+.bg-green {
+    background-color: #a5d9a9;
+}
+
+.bg-blue {
+    background-color: #6776e3;
+}
+
+.bg-ltblue {
+    background-color: #a8c9ef;
+}
+
+.section {
+    /* min-height: 90vh; */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.container {
+    /* min-height: 90vh; */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.positive {   
+    color: green;
+}
+
+.negative {
+    color: #df2020;
+}
+
+.mixed {
+    color: #ff9a00;
+}
+
+.neutral {
+    color: grey;
+}
+
+
+.kw_model-image {
+  max-width: 100px;
+  height: 50px;
+  background-color: powderblue;
+}
+
+
+.overlay {
+    position: absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.overlay-text {
+    z-index: 1;
+    position: relative;
+}
+
+.btn-positive {
+    color: green;
+}
+
+.btn-negative {
+    color: #DF2020;
+}
+
+.btn-mixed {
+    color: mixed;
+}
+
+
+
