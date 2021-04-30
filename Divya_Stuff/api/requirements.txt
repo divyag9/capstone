@@ -39,7 +39,7 @@ srsly==0.2.0
 thinc==7.3.1
 tqdm==4.40.0
 Unidecode==1.1.1
-urllib3==1.25.7
+urllib3==1.25.8
 wasabi==0.4.0
 Werkzeug==0.16.0
 youtube-dl==2019.11.28
